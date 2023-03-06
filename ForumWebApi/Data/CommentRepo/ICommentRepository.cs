@@ -11,6 +11,6 @@ namespace ForumWebApi.Data.CommentRepo
 
         public void Delete(int CommentId, UserResponseDto userDto);
 
-        public Comment Change(CommentChangeDto commentDto, UserResponseDto userDto);
+        public Comment? Change(CommentChangeDto commentDto, UserResponseDto userDto);
     }
 }
