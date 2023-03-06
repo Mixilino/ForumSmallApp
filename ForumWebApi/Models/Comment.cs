@@ -4,6 +4,21 @@ namespace ForumWebApi.Models
 {
     public class Comment
     {
+        public Comment()
+        {
+            
+        }
+        public Comment(int commentId, string commentText, DateTime dateCreated, int userId, User user, int postId, Post post)
+        {
+            CommentId = commentId;
+            CommentText = commentText;
+            DateCreated = dateCreated;
+            UserId = userId;
+            User = user;
+            PostId = postId;
+            Post = post;
+        }
+
         [Key]
         public int CommentId { get; set; }
         public string CommentText { get; set; }

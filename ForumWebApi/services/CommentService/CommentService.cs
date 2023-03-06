@@ -18,6 +18,10 @@ namespace ForumWebApi.services.CommentService
             this._unitOfWork = unitOfWork;
         }
 
+        public CommentService()
+        {
+        }
+
         public ServiceResponse<CommentResponseDto> Create(CommentCreateDto commentDto, UserResponseDto userDto)
         {
 
@@ -117,14 +121,20 @@ namespace ForumWebApi.services.CommentService
                 response.Succes = true;
                 response.Message = "Comment updated succesfully";
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 response.Data = null;
                 response.Succes = false;
                 response.Message = "Comment failed to update.";
-
             }
+            Console.WriteLine(response);
             return response;
+        }
+
+        public int Saberi(int x, int y)
+        {
+            return x+y;
         }
 
     }
