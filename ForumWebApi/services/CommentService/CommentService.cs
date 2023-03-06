@@ -50,7 +50,6 @@ namespace ForumWebApi.services.CommentService
                 response.Data = null;
                 response.Succes = false;
                 response.Message = "Error when creating comment.";
-
             }
             return response;
 
@@ -130,11 +129,6 @@ namespace ForumWebApi.services.CommentService
             }
             Console.WriteLine(response);
             return response;
-        }
-
-        public int Saberi(int x, int y)
-        {
-            return x+y;
         }
 
     }
