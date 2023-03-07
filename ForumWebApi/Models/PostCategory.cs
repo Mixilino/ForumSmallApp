@@ -14,6 +14,4 @@ namespace ForumWebApi.Models
 
         public List<Post> Posts { get; set; }
     }
-
-    
 }
