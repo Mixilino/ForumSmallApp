@@ -20,6 +20,7 @@ namespace ForumWebApi
     public class CommentServiceTest
     {
         [Test]
+        [Category("Change")]
         public void Change_UnSuccessfulCommentIsNull()
         {
             // Arrange
@@ -45,6 +46,7 @@ namespace ForumWebApi
         }
 
         [Test]
+        [Category("Change")]
         public void Change_Successful()
         {
             // Arrange
@@ -89,6 +91,7 @@ namespace ForumWebApi
         }
 
         [Test]
+        [Category("Change")]
         public void Change_FailedError()
         {
             // Arrange
@@ -126,6 +129,7 @@ namespace ForumWebApi
         }
 
         [Test]
+        [Category("Change")]
         public void Change_UnsuccesfullInvalidUser()
         {
             // Arrange
@@ -163,8 +167,8 @@ namespace ForumWebApi
             Assert.AreEqual(expectedResponse, result);
         }
 
-
         [Test]
+        [Category("Create")]
         public void Create_Successful()
         {
             // Arrange
@@ -210,6 +214,7 @@ namespace ForumWebApi
         }
 
         [Test]
+        [Category("Create")]
         public void Create_Unuccessful()
         {
             // Arrange
@@ -248,6 +253,7 @@ namespace ForumWebApi
         }
 
         [Test]
+        [Category("Delete")]
         public void Delete_Successful()
         {
             // Arrange
@@ -285,6 +291,7 @@ namespace ForumWebApi
         }
 
         [Test]
+        [Category("Delete")]
         public void Delete_CommentDoesNotExist()
         {
             // Arrange
@@ -322,6 +329,7 @@ namespace ForumWebApi
         }
 
         [Test]
+        [Category("Delete")]
         public void Delete_CommentFailedToUpdate()
         {
             // Arrange
