@@ -17,7 +17,7 @@ namespace ForumWebApi.ServiceTest
     public class UserServiceTest
     {
         [Test]
-        [Category("Users_GetAll")]
+        [Category("Service/Users_GetAll")]
         public void GetAll_ReturnsListOfUsers()
         {
             // Arrange
@@ -51,7 +51,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("Users_ChangeRole")]
+        [Category("Service/Users_ChangeRole")]
         public void ChangeRole_Successful()
         {
             // Arrange
@@ -89,7 +89,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("Users_ChangeRole")]
+        [Category("Service/Users_ChangeRole")]
         public void ChangeRole_UserDoesNotExist()
         {
             // Arrange
@@ -116,7 +116,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("Users_ChangeRole")]
+        [Category("Service/Users_ChangeRole")]
         public void ChangeRole_ErrorSavingIntoDb()
         {
             // Arrange

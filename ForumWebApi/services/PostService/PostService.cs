@@ -27,7 +27,10 @@ namespace ForumWebApi.services.PostService
             var isAdmin = user?.role == UserRoles.Admin;
             return new ServiceResponse<List<PostResponseDto>>
             {
-                Data = posts.Where(p=> isAdmin || p.PostState==PostStateEnum.Verified || p.UserId == userDto.UserId).Select(post => new PostResponseDto {
+                Data = posts
+                .Where(p => isAdmin || p.PostState == PostStateEnum.Verified || p.UserId == userDto.UserId)
+                .Select(post => new PostResponseDto
+                {
                     User = new UserResponseDto { UserName = post.User.UserName, UserId = post.User.UserId },
                     Comments = post.Comments.Select(c => new CommentResponseDto
                     {
@@ -38,14 +41,15 @@ namespace ForumWebApi.services.PostService
                         UserId = c.UserId,
                         User = new UserResponseDto { UserId = c.UserId, UserName = c.User.UserName }
                     }).ToList(),
-                    PostTitle= post.PostTitle,
+                    PostTitle = post.PostTitle,
                     PostText = post.PostText,
                     PostCategories = post.PostCategories.Select(pc => new PostCategoryReturnDto { PcId = pc.PcId, CategoryName = pc.CategoryName }).ToList(),
                     DatePosted = post.DatePosted,
                     Voted = post.Votes.Any(v => v.User.UserId == userDto.UserId),
-                    Upvote = post.Votes.Any(v => v.User.UserId == userDto.UserId) ? post.Votes.Find(v => v.User.UserId == userDto.UserId).UpVote : false,
+                    Upvote = post.Votes.Any(v => v.User.UserId == userDto.UserId) ?
+                                post.Votes.Find(v => v.User.UserId == userDto.UserId).UpVote : false,
                     PostId = post.PostId,
-                    PostState= post.PostState,
+                    PostState = post.PostState,
                     VotesCount = post.Votes.Count(v => v.UpVote) - post.Votes.Count(v => !v.UpVote)
                 }).ToList(),
                 Succes = true,
@@ -55,7 +59,7 @@ namespace ForumWebApi.services.PostService
 
         public ServiceResponse<PostResponseDto> Create(PostCreateDto postDto, UserResponseDto userDto)
         {
-           
+
             var post = _unitOfWork.PostRepository.Add(postDto, userDto);
             var user = _unitOfWork.UserRepository.GetById(userDto.UserId);
             var isAdmin = user?.role == UserRoles.Admin;
@@ -120,7 +124,7 @@ namespace ForumWebApi.services.PostService
                 bool voted = post.Votes.Any(v => v.User.UserId == userDto.UserId);
                 response.Data = new PostResponseDto
                 {
-                    User = new UserResponseDto { UserName = post.User.UserName, UserId=post.User.UserId },
+                    User = new UserResponseDto { UserName = post.User.UserName, UserId = post.User.UserId },
                     Comments = post.Comments.Select(c => new CommentResponseDto
                     {
                         CommentId = c.CommentId,
@@ -136,9 +140,9 @@ namespace ForumWebApi.services.PostService
                     DatePosted = post.DatePosted,
                     Voted = voted,
                     Upvote = voted ? post.Votes.Find(v => v.User.UserId == userDto.UserId).UpVote : false,
-                    PostState= post.PostState,
+                    PostState = post.PostState,
                     PostId = post.PostId,
-                    VotesCount = post.Votes.Count(v=>v.UpVote) - post.Votes.Count(v => !v.UpVote)
+                    VotesCount = post.Votes.Count(v => v.UpVote) - post.Votes.Count(v => !v.UpVote)
                 };
                 response.Succes = true;
                 response.Message = "Post updated succesfully";
@@ -162,7 +166,7 @@ namespace ForumWebApi.services.PostService
             ServiceResponse<bool> response = new ServiceResponse<bool>();
             try
             {
-                if (_unitOfWork.Save()!=0)
+                if (_unitOfWork.Save() != 0)
                 {
                     response.Data = true;
                     response.Succes = true;
@@ -218,7 +222,7 @@ namespace ForumWebApi.services.PostService
                     PostText = post.PostText,
                     PostCategories = post.PostCategories.Select(pc => new PostCategoryReturnDto { PcId = pc.PcId, CategoryName = pc.CategoryName }).ToList(),
                     DatePosted = post.DatePosted,
-                    PostState= post.PostState,
+                    PostState = post.PostState,
                     Voted = voted,
                     Upvote = voted ? post.Votes.Find(v => v.User.UserId == userDto.UserId).UpVote : false,
                     PostId = post.PostId,

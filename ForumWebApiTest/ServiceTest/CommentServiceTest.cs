@@ -20,7 +20,7 @@ namespace ForumWebApi.ServiceTest
     public class CommentServiceTest
     {
         [Test]
-        [Category("Comment_Change")]
+        [Category("Service/Comment_Change")]
         public void Change_UnSuccessfulCommentIsNull()
         {
             // Arrange
@@ -46,7 +46,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("Comment_Change")]
+        [Category("Service/Comment_Change")]
         public void Change_Successful()
         {
             // Arrange
@@ -92,7 +92,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("Comment_Change")]
+        [Category("Service/Comment_Change")]
         public void Change_FailedError()
         {
             // Arrange
@@ -130,7 +130,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("Comment_Change")]
+        [Category("Service/Comment_Change")]
         public void Change_UnsuccesfullInvalidUser()
         {
             // Arrange
@@ -169,7 +169,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("Comment_Create")]
+        [Category("Service/Comment_Create")]
         public void Create_Successful()
         {
             // Arrange
@@ -215,7 +215,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("Comment_Create")]
+        [Category("Service/Comment_Create")]
         public void Create_Unuccessful()
         {
             // Arrange
@@ -254,7 +254,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("Comment_Delete")]
+        [Category("Service/Comment_Delete")]
         public void Delete_Successful()
         {
             // Arrange
@@ -292,7 +292,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("Comment_Delete")]
+        [Category("Service/Comment_Delete")]
         public void Delete_CommentDoesNotExist()
         {
             // Arrange
@@ -330,7 +330,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("Comment_Delete")]
+        [Category("Service/Comment_Delete")]
         public void Delete_CommentFailedToUpdate()
         {
             // Arrange

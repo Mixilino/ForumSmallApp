@@ -19,7 +19,7 @@ namespace ForumWebApi.ServiceTest
     public class PostCategoryServiceTest
     {
         [Test]
-        [Category("PostCategory_Create")]
+        [Category("Service/PostCategory_Create")]
         public void Create_Successful()
         {
             // Arrange
@@ -45,7 +45,7 @@ namespace ForumWebApi.ServiceTest
             Assert.AreEqual(result.Data, expectedPostCategoryDto);
         }
         [Test]
-        [Category("PostCategory_Create")]
+        [Category("Service/PostCategory_Create")]
         public void Create_SavingThrowsError()
         {
             // Arrange
@@ -70,7 +70,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("PostCategory_GetAll")]
+        [Category("Service/PostCategory_GetAll")]
         public void GetAll_ReturnsListOfCategories()
         {
             var expectedCategoryList = new List<PostCategoryReturnDto> {
@@ -101,7 +101,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("PostCategory_Delete")]
+        [Category("Service/PostCategory_Delete")]
         public void Delete_Successful()
         {
             // Arrange
@@ -125,7 +125,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("PostCategory_Delete")]
+        [Category("Service/PostCategory_Delete")]
         public void Delete_DeletingThrowsError()
         {
             // Arrange
@@ -149,7 +149,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("PostCategory_Update")]
+        [Category("Service/PostCategory_Update")]
         public void Update_Succesful()
         {
             // Arrange
@@ -179,7 +179,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("PostCategory_Update")]
+        [Category("Service/PostCategory_Update")]
         public void Update_SaveThrowsError()
         {
             // Arrange
@@ -206,7 +206,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("PostCategory_Update")]
+        [Category("Service/PostCategory_Update")]
         public void Update_RepoReturnsNull()
         {
             // Arrange
