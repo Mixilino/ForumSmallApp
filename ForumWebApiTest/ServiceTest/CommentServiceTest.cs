@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ForumWebApi
+namespace ForumWebApi.ServiceTest
 {
     [TestFixture]
     public class CommentServiceTest
@@ -60,7 +60,7 @@ namespace ForumWebApi
                 CommentId = commentDto.CommentId,
                 CommentText = commentDto.CommentText,
                 DateCreated = timeNow,
-                User = new User { UserName = userResponseDto.UserName, UserId = userResponseDto.UserId}
+                User = new User { UserName = userResponseDto.UserName, UserId = userResponseDto.UserId }
             };
             var mockRepo = new Mock<IUnitOfWork>();
             mockRepo.Setup(repo => repo.CommentRepository.Change(commentDto, userResponseDto))
@@ -70,12 +70,13 @@ namespace ForumWebApi
 
             ServiceResponse<CommentResponseDto> expectedResponse = new ServiceResponse<CommentResponseDto>()
             {
-                Data = new CommentResponseDto { 
-                    CommentId = com.CommentId, 
-                    DateCreated = com.DateCreated, 
-                    PostId = com.PostId, 
-                    CommentText = com.CommentText, 
-                    UserId = com.UserId 
+                Data = new CommentResponseDto
+                {
+                    CommentId = com.CommentId,
+                    DateCreated = com.DateCreated,
+                    PostId = com.PostId,
+                    CommentText = com.CommentText,
+                    UserId = com.UserId
                 },
                 Succes = true,
                 Message = "Comment updated succesfully",
@@ -84,7 +85,7 @@ namespace ForumWebApi
 
             // Act
             var result = cs.Change(commentDto, userResponseDto);
-           
+
 
             // Assert
             Assert.AreEqual(expectedResponse, result);
@@ -105,7 +106,7 @@ namespace ForumWebApi
                 CommentId = commentDto.CommentId,
                 CommentText = commentDto.CommentText,
                 DateCreated = timeNow,
-                };
+            };
             var mockRepo = new Mock<IUnitOfWork>();
             mockRepo.Setup(repo => repo.CommentRepository.Change(commentDto, userResponseDto))
                 .Returns(com);
@@ -172,7 +173,7 @@ namespace ForumWebApi
         public void Create_Successful()
         {
             // Arrange
-            var commentDto = new CommentCreateDto() {CommentText = "Some comment", PostId = 1 };
+            var commentDto = new CommentCreateDto() { CommentText = "Some comment", PostId = 1 };
             var userResponseDto = new UserResponseDto(2, "mixilino");
             var timeNow = new DateTime();
             var com = new Comment

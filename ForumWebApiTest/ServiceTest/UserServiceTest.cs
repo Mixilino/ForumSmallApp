@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ForumWebApi
+namespace ForumWebApi.ServiceTest
 {
     public class UserServiceTest
     {
@@ -53,15 +53,17 @@ namespace ForumWebApi
         public void ChangeRole_Successful()
         {
             // Arrange
-            var userChangeRequest = new UserChangeRoleRequest() { role= UserRoles.Regular, UserId = 2 };
-            var userMocked = new User() { 
-                UserId= userChangeRequest.UserId, 
-                role = UserRoles.Regular, 
-                UserName = "Mixilino" 
+            var userChangeRequest = new UserChangeRoleRequest() { role = UserRoles.Regular, UserId = 2 };
+            var userMocked = new User()
+            {
+                UserId = userChangeRequest.UserId,
+                role = UserRoles.Regular,
+                UserName = "Mixilino"
             };
-            var expectedDataReturned = new UserRoleResponse() { 
-                UserName = userMocked.UserName, 
-                role = userMocked.role, 
+            var expectedDataReturned = new UserRoleResponse()
+            {
+                UserName = userMocked.UserName,
+                role = userMocked.role,
                 UserId = userMocked.UserId
             };
             var mockRepo = new Mock<IUnitOfWork>();
@@ -78,7 +80,7 @@ namespace ForumWebApi
 
             // Act
             var result = us.ChangeRole(userChangeRequest);
-            
+
             // Assert
             Assert.AreEqual(expectedResponse, result);
             Assert.AreEqual(result.Data, expectedDataReturned);
@@ -90,7 +92,7 @@ namespace ForumWebApi
         {
             // Arrange
             var userChangeRequest = new UserChangeRoleRequest() { role = UserRoles.Regular, UserId = 2 };
-            
+
             var mockRepo = new Mock<IUnitOfWork>();
             mockRepo.Setup(repo => repo.UserRepository.ChangeRole(userChangeRequest)).Returns((User)null);
             mockRepo.Setup(repo => repo.Save()).Returns(0);
