@@ -14,7 +14,7 @@ namespace ForumWebApi.DomainTest
     {
         [Test]
         [Category("Domain_PostCategory")]
-        public void TestPostCategory_ValidCategoryName_ShouldNotThrowValidationException()
+        public void CategoryName_Valid()
         {
             // Arrange
             var postCategory = new PostCategory
@@ -35,7 +35,7 @@ namespace ForumWebApi.DomainTest
 
         [Test]
         [Category("Domain_PostCategory")]
-        public void TestPostCategory_EmptyCategoryNameShouldThrowValidationException()
+        public void CategoryName_EmptyShouldThrowValidationException()
         {
             // Arrange
             var postCategory = new PostCategory
@@ -57,7 +57,7 @@ namespace ForumWebApi.DomainTest
 
         [Test]
         [Category("Domain_PostCategory")]
-        public void TestPostCategory_LongCategoryNameShouldThrowValidationException()
+        public void CategoryName_LongShouldThrowValidationException()
         {
             // Arrange
             var postCategory = new PostCategory

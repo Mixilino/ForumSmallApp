@@ -14,7 +14,7 @@ namespace ForumWebApi.DomainTest
     {
         [Test]
         [Category("Domain_Comment")]
-        public void Comment_CanBeCreatedWithValidProperties()
+        public void Comment_CanBeCreated()
         {
             // Arrange
             var commentId = 1;

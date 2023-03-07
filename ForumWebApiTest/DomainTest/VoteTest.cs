@@ -12,7 +12,7 @@ namespace ForumWebApi.DomainTest
     public class VoteTests
     {
         [Test]
-        [Category("domain_vote")]
+        [Category("Domain_Vote")]
         public void VoteId_GetSet_ShouldWork()
         {
             // Arrange
@@ -27,7 +27,7 @@ namespace ForumWebApi.DomainTest
         }
 
         [Test]
-        [Category("domain_vote")]
+        [Category("Domain_Vote")]
         public void UpVote_GetSet_ShouldWork()
         {
             // Arrange
@@ -42,7 +42,7 @@ namespace ForumWebApi.DomainTest
         }
 
         [Test]
-        [Category("domain_vote")]
+        [Category("Domain_Vote")]
         public void DateLiked_GetSet_ShouldWork()
         {
             // Arrange
@@ -58,7 +58,7 @@ namespace ForumWebApi.DomainTest
         }
 
         [Test]
-        [Category("domain_vote")]
+        [Category("Domain_Vote")]
         public void UserId_GetSet_ShouldWork()
         {
             // Arrange
@@ -73,7 +73,7 @@ namespace ForumWebApi.DomainTest
         }
 
         [Test]
-        [Category("domain_vote")]
+        [Category("Domain_Vote")]
         public void User_GetSet_ShouldWork()
         {
             // Arrange
@@ -89,7 +89,7 @@ namespace ForumWebApi.DomainTest
         }
 
         [Test]
-        [Category("domain_vote")]
+        [Category("Domain_Vote")]
         public void PostId_GetSet_ShouldWork()
         {
             // Arrange
@@ -104,7 +104,7 @@ namespace ForumWebApi.DomainTest
         }
 
         [Test]
-        [Category("domain_vote")]
+        [Category("Domain_Vote")]
         public void Post_GetSet_ShouldWork()
         {
             // Arrange

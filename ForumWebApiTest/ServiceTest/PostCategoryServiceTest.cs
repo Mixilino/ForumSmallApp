@@ -95,7 +95,8 @@ namespace ForumWebApi.ServiceTest
             var result = cs.GetAll();
 
             // Assert
-            Assert.AreEqual(expectedResponse, result);
+            Assert.AreEqual(expectedResponse.Succes, result.Succes);
+            Assert.AreEqual(expectedResponse.Message, result.Message);
             CollectionAssert.AreEqual(expectedCategoryList, result.Data);
         }
 

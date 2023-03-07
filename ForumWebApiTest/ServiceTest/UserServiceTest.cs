@@ -44,7 +44,8 @@ namespace ForumWebApi.ServiceTest
             var result = us.GetAll();
 
             // Assert
-            Assert.AreEqual(expectedResponse, result);
+            Assert.AreEqual(expectedResponse.Succes, result.Succes);
+            Assert.AreEqual(expectedResponse.Message, result.Message);
             CollectionAssert.AreEqual(result.Data, expectedUsersList);
 
         }

@@ -18,7 +18,8 @@ namespace ForumWebApi.Models
             }
 
             ServiceResponse<T> other = (ServiceResponse<T>)obj;
-            return Succes == other.Succes && Message == other.Message;
+            if (Data == null) return Succes == other.Succes && Message == other.Message && other.Data == null;
+            return Succes == other.Succes && Message == other.Message && Data.Equals(other.Data);
         }
 
         public override int GetHashCode()
