@@ -21,6 +21,7 @@ namespace ForumWebApi.Models
 
         [Key]
         public int CommentId { get; set; }
+        [Required]
         public string CommentText { get; set; }
         public DateTime DateCreated { get; set; }
 

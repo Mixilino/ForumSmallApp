@@ -14,7 +14,7 @@ namespace ForumWebApi.DomainTest
     public class PostTests
     {
         [Test]
-        [Category("Post")]
+        [Category("Domain_Post")]
         public void ToString_ReturnsCorrectString()
         {
             // Arrange
@@ -34,7 +34,7 @@ namespace ForumWebApi.DomainTest
         }
 
         [Test]
-        [Category("Post")]
+        [Category("Domain_Post")]
         public void PostCategories_InitializedAsEmptyList()
         {
             // Arrange
@@ -47,7 +47,7 @@ namespace ForumWebApi.DomainTest
         }
 
         [Test]
-        [Category("Post")]
+        [Category("Domain_Post")]
         public void Votes_InitializedAsEmptyList()
         {
             // Arrange
@@ -60,7 +60,7 @@ namespace ForumWebApi.DomainTest
         }
 
         [Test]
-        [Category("Post")]
+        [Category("Domain_Post")]
         public void Comments_InitializedAsEmptyList()
         {
             // Arrange
@@ -73,7 +73,7 @@ namespace ForumWebApi.DomainTest
         }
 
         [Test]
-        [Category("Post")]
+        [Category("Domain_Post")]
         public void PostState_DefaultValue_IsInVerification()
         {
             // Arrange
@@ -84,7 +84,7 @@ namespace ForumWebApi.DomainTest
         }
 
         [Test]
-        [Category("Post")]
+        [Category("Domain_Post")]
         public void PostTitle_CannotBeEmpty()
         {
             // Arrange
@@ -102,7 +102,7 @@ namespace ForumWebApi.DomainTest
         }
 
         [Test]
-        [Category("Post")]
+        [Category("Domain_Post")]
         public void PostText_CannotBeEmpty()
         {
             // Arrange
