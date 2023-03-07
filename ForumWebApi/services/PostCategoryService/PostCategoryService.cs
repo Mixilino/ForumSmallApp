@@ -25,7 +25,7 @@ namespace ForumWebApi.services.PostCategoryService
                 _unitOfWork.Save();
                 response.Data = new PostCategoryReturnDto { CategoryName = pc.CategoryName, PcId = pc.PcId };
                 response.Succes = true;
-                response.Message = "message";
+                response.Message = "Category created";
             }
             catch (Exception)
             {
@@ -76,9 +76,9 @@ namespace ForumWebApi.services.PostCategoryService
             
         }
 
-        public async Task<ServiceResponse<PostCategoryReturnDto>> Update(PostCategoryReturnDto categoryDto)
+        public ServiceResponse<PostCategoryReturnDto> Update(PostCategoryReturnDto categoryDto)
         {
-            var category = await _unitOfWork.PostCategoryRepository.Rename(categoryDto);
+            var category = _unitOfWork.PostCategoryRepository.Rename(categoryDto);
             ServiceResponse<PostCategoryReturnDto> response = new ServiceResponse<PostCategoryReturnDto>();
             if(category == null)
             {

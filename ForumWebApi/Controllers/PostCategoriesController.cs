@@ -56,9 +56,9 @@ namespace ForumWebApi.Controllers
 
         [Authorize(Roles = "Admin,Regular")]
         [HttpPut("rename")]
-        public async Task<ActionResult<ServiceResponse<PostCategoryReturnDto>>> RenameCategory([FromBody]PostCategoryReturnDto categoryDto)
+        public ActionResult<ServiceResponse<PostCategoryReturnDto>> RenameCategory([FromBody]PostCategoryReturnDto categoryDto)
         {
-            var response = await postCategoryService.Update(categoryDto);
+            var response = postCategoryService.Update(categoryDto);
             if (response.Succes)
             {
                 return Ok(response);

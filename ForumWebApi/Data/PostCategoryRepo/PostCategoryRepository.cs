@@ -36,9 +36,9 @@ namespace ForumWebApi.Data.PostCategoryRepo
             return _context.PostCategories.ToList();
         }
 
-        public async Task<PostCategory?> Rename(PostCategoryReturnDto categoryDto)
+        public PostCategory? Rename(PostCategoryReturnDto categoryDto)
         {
-            var category = await _context.PostCategories.FirstOrDefaultAsync(c => c.PcId == categoryDto.PcId);
+            var category = _context.PostCategories.FirstOrDefault(c => c.PcId == categoryDto.PcId);
             if (category == null)
             {
                 return null;

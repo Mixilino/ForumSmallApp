@@ -8,6 +8,6 @@ namespace ForumWebApi.services.PostCategoryService
         public ServiceResponse<PostCategoryReturnDto> Create(string name);
         public ServiceResponse<List<PostCategoryReturnDto>> GetAll();
         public ServiceResponse<int?> Delete(int id);
-        public Task<ServiceResponse<PostCategoryReturnDto>> Update(PostCategoryReturnDto categoryDto); 
+        public ServiceResponse<PostCategoryReturnDto> Update(PostCategoryReturnDto categoryDto); 
     }
 }

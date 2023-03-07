@@ -13,10 +13,11 @@ using System.Threading.Tasks;
 
 namespace ForumWebApi.ServiceTest
 {
+    [TestFixture]
     public class UserServiceTest
     {
         [Test]
-        [Category("Users")]
+        [Category("Users_GetAll")]
         public void GetAll_ReturnsListOfUsers()
         {
             // Arrange
@@ -49,7 +50,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("Users")]
+        [Category("Users_ChangeRole")]
         public void ChangeRole_Successful()
         {
             // Arrange
@@ -87,7 +88,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("Users")]
+        [Category("Users_ChangeRole")]
         public void ChangeRole_UserDoesNotExist()
         {
             // Arrange
@@ -114,7 +115,7 @@ namespace ForumWebApi.ServiceTest
         }
 
         [Test]
-        [Category("Users")]
+        [Category("Users_ChangeRole")]
         public void ChangeRole_ErrorSavingIntoDb()
         {
             // Arrange
