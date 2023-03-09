@@ -9,6 +9,9 @@ using System.Xml.Linq;
 
 namespace ForumWebApi.Controllers
 {
+    /// <summary>
+    /// A controller class for managing post categories in an API. Client needs to be Authorized to access any of the methods in this class
+    /// </summary>
     [Authorize]
     [Route("api/post")]
     [ApiController]
@@ -16,11 +19,19 @@ namespace ForumWebApi.Controllers
     {
         private readonly IPostService postService;
 
+        /// <summary>
+        /// Constructor for PostController
+        /// </summary>
+        /// <param name="pcs">PostService for handling Post Controller requests</param>
         public PostController(IPostService pc)
         {
             this.postService = pc;
         }
 
+        /// <summary>
+        /// Gets all posts
+        /// </summary>
+        /// <returns>ServiceResponse containing all posts or error in case of failure.</returns>
         [HttpGet("all")]
         public ActionResult<ServiceResponse<List<PostResponseDto>>> GetAll()
         {
@@ -39,6 +50,11 @@ namespace ForumWebApi.Controllers
             return BadRequest(p);
         }
 
+        /// <summary>
+        /// Creates a new post. User need to be admin or regular.
+        /// </summary>
+        /// <param name="name">Post data sent in Body of HTTP request</param>
+        /// <returns>ServiceResponse containing the created post or error in case of failure.</returns>
         [Authorize(Roles = "Admin,Regular")]
         [HttpPost("new")]
         public ActionResult<ServiceResponse<PostResponseDto>> Create([FromBody]PostCreateDto post)
@@ -58,6 +74,11 @@ namespace ForumWebApi.Controllers
             return BadRequest(p);
         }
 
+        /// <summary>
+        /// Changes a post. Only admin and regular users can access this endpoint.
+        /// </summary>
+        /// <param name="categoryDto">The post to change with updated data.</param>
+        /// <returns>ServiceResponse containing the updated post or error in case of failure.</returns>
         [Authorize(Roles = "Admin,Regular")]
         [HttpPatch("edit")]
         public ActionResult<ServiceResponse<PostResponseDto>> Change(PostChangeDto post)
@@ -77,6 +98,11 @@ namespace ForumWebApi.Controllers
             return BadRequest(p);
         }
 
+        /// <summary>
+        /// Deletes a post by ID. Only admin and regular users can access this endpoint.
+        /// </summary>
+        /// <param name="id">The ID of the post to delete</param>
+        /// <returns>ServiceResponse indicating success or failure</returns>
         [Authorize(Roles = "Admin,Regular")]
         [HttpDelete("delete/{PostId}")]
         public ActionResult<ServiceResponse<PostResponseDto>> Delete(int PostId)
@@ -96,6 +122,11 @@ namespace ForumWebApi.Controllers
             return BadRequest(p);
         }
 
+        /// <summary>
+        /// Upvote or downvote a post with given ID. Only admin and regular users can access this endpoint.
+        /// </summary>
+        /// <param name="id">The ID of the category to vote</param>
+        /// <returns>ServiceResponse indicating success or failure</returns>
         [Authorize(Roles = "Admin,Regular")]
         [HttpGet("vote")]
         public ActionResult<ServiceResponse<PostResponseDto>> Vote([FromQuery] int PostId, [FromQuery] bool vote)
@@ -115,7 +146,11 @@ namespace ForumWebApi.Controllers
             return BadRequest(p);
         }
 
-
+        /// <summary>
+        /// Changes state of post. Only admin can access this endpoint.
+        /// </summary>
+        /// <param name="id">Post data with updated state</param>
+        /// <returns>ServiceResponse indicating success or failure</returns>
         [Authorize(Roles = "Admin")]
         [HttpPatch("state")]
         public ActionResult<ServiceResponse<PostResponseDto>> ChangeState(PostChangeStateDto postChangeStateDto)
