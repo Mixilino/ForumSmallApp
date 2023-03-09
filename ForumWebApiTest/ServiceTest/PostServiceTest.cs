@@ -15,6 +15,7 @@ namespace ForumWebApi.ServiceTest
     public class PostServiceTest
     {
         [Test]
+        [Category("Service/Post_GetAll")]
         public void GetAll_ReturnsValidResponse()
         {
             // Arrange
@@ -70,6 +71,8 @@ namespace ForumWebApi.ServiceTest
             // Act
             var response = service.GetAll(userDto);
             Console.WriteLine(response.Data);
+
+
             // Assert
             Assert.IsTrue(response.Succes);
             Assert.AreEqual("Success", response.Message);
