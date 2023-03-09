@@ -4,14 +4,21 @@
       "src": [
         {
           "files": [
-            "**.csproj"
+            "**/**.csproj"
           ],
-          "src": "C:\\Users\\nisav\\Downloads\\iteh-forum-api-main\\iteh-forum-api-main\\ForumWebApi"
+          "exclude": [
+            "...",
+            "**/Test.csproj"
+          ],
+          "src": ".."
         }
       ],
       "dest": "api",
+      "includePrivateMembers": false,
       "disableGitFeatures": false,
-      "disableDefaultFilter": false
+      "disableDefaultFilter": false,
+      "noRestore": false,
+      "namespaceLayout": "flattened"
     }
   ],
   "build": {
@@ -56,10 +63,8 @@
       "default"
     ],
     "postProcessors": [],
-    "markdownEngineName": "markdig",
     "noLangKeyword": false,
     "keepFileLink": false,
-    "cleanupCacheHistory": false,
     "disableGitFeatures": false
   }
 }
