@@ -25,6 +25,9 @@ namespace ForumWebApi.Models
         /// </summary>
         public string Message { get; set; } = string.Empty;
 
+        /// <summary>
+        /// Determines whether the current instance of the ServiceResponse<T> class is equal to another instance.
+        /// </summary>
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
@@ -37,11 +40,17 @@ namespace ForumWebApi.Models
             return Succes == other.Succes && Message == other.Message && Data.Equals(other.Data);
         }
 
+        /// <summary>
+        /// Returns a hash code for the current instance of the ServiceResponse<T> class.
+        /// </summary>
         public override int GetHashCode()
         {
             return Succes.GetHashCode() ^ Message.GetHashCode();
         }
 
+        /// <summary>
+        /// Returns a string that represents the current instance of the ServiceResponse<T> class.
+        /// </summary>
         public override string ToString()
         {
             return $"Customer: Succes={Succes}, Message={Message}, Data={Data}";

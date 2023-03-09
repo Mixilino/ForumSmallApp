@@ -80,7 +80,7 @@ namespace ForumWebApi.Controllers
         /// </summary>
         /// <param name="categoryDto">The post category to rename with updated data</param>
         /// <returns>ServiceResponse containing the updated category or error in case of failure.</returns>
-        /// [Authorize(Roles = "Admin,Regular")]
+        [Authorize(Roles = "Admin,Regular")]
         [HttpPut("rename")]
         public ActionResult<ServiceResponse<PostCategoryReturnDto>> RenameCategory([FromBody]PostCategoryReturnDto categoryDto)
         {
