@@ -18,7 +18,7 @@ namespace ForumWebApi.Data.CommentRepo
 
         public Comment Add(CommentCreateDto commentDto, UserResponseDto userDto)
         {
-            Comment comment = new Comment
+            Comment comment = new()
             {
                 UserId = userDto.UserId,
                 CommentText = commentDto.CommentText,
@@ -41,7 +41,7 @@ namespace ForumWebApi.Data.CommentRepo
             _context.Comments.Remove(comment);
         }
 
-        public Comment Change(CommentChangeDto commentDto, UserResponseDto userDto)
+        public Comment? Change(CommentChangeDto commentDto, UserResponseDto userDto)
         {
             Comment comment = _context.Comments.Include(c => c.User).SingleOrDefault(c => c.CommentId == commentDto.CommentId);
             if (comment == null)

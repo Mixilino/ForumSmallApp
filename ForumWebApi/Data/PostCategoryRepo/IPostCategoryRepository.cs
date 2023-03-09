@@ -8,6 +8,6 @@ namespace ForumWebApi.Data.PostCategoryRepo
         public PostCategory Add(string name);
         public List<PostCategory> GetAll();
         public int Delete(int id);
-        public Task<PostCategory?> Rename(PostCategoryReturnDto categoryDto);
+        public PostCategory? Rename(PostCategoryReturnDto categoryDto);
     }
 }

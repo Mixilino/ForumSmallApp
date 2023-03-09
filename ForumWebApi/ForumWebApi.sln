@@ -10,6 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumWebApiTest", "..\ForumWebApiTest\ForumWebApiTest.csproj", "{7762FCAD-46BA-4875-B5E3-E58A806979C9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{09FF98AC-7DAF-4A93-B50C-1FF0C8774462} = {09FF98AC-7DAF-4A93-B50C-1FF0C8774462}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +25,10 @@ Global
 		{09FF98AC-7DAF-4A93-B50C-1FF0C8774462}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09FF98AC-7DAF-4A93-B50C-1FF0C8774462}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09FF98AC-7DAF-4A93-B50C-1FF0C8774462}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7762FCAD-46BA-4875-B5E3-E58A806979C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7762FCAD-46BA-4875-B5E3-E58A806979C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7762FCAD-46BA-4875-B5E3-E58A806979C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7762FCAD-46BA-4875-B5E3-E58A806979C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

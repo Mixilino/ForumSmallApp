@@ -6,7 +6,9 @@ namespace ForumWebApi.Models
     {
         [Key]
         public int PostId { get; set; }
+        [Required]
         public string PostTitle { get; set; } = string.Empty;
+        [Required]
         public string PostText { get; set; } = string.Empty;
         public DateTime DatePosted { get; set; }
 
@@ -15,10 +17,9 @@ namespace ForumWebApi.Models
 
         public PostStateEnum PostState { get; set; }
 
-        public List<PostCategory> PostCategories { get; set; }
-
-        public List<Vote> Votes { get; set; }
-        public List<Comment> Comments { get; set; }
+        public List<PostCategory> PostCategories { get; set; } = new List<PostCategory>();
+        public List<Vote> Votes { get; set; } = new List<Vote>();
+        public List<Comment> Comments { get; set; } = new List<Comment>();
 
         public override string ToString()
         {
