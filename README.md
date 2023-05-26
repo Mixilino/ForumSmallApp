@@ -1,5 +1,5 @@
 # ForumSmallApp
-###Project for 2 exams on Faculty of Organizational sciences. ###
+### Project for 2 exams on Faculty of Organizational sciences. ###
 * Napredne .NET tehnologije
 * Napredno programiranje
 
