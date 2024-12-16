@@ -3,7 +3,6 @@ import axiosInstanceTs from "../../api/axiosInstance";
 import { useContext } from "react";
 import { AuthContext } from "../../store/AuthContext";
 import { RestResponse } from "../../model/RestResponse";
-import { toast } from "react-toastify";
 import { PostResponse } from "../../model/PostResponse";
 import { PostsKey } from "../../constants/queryKeys";
 

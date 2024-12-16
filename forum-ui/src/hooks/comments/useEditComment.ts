@@ -3,8 +3,6 @@ import axiosInstanceTs from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 import queryClient from "../../api/queryClientInstance";
 import { PostsKey } from "../../constants/queryKeys";
-import { AxiosError } from "axios";
-import { RestResponse } from "../../model/RestResponse";
 
 const editCommentRequest = async (vars: editCommentVariables) => {
   const config = {

@@ -2,7 +2,6 @@ import { useMutation } from "@tanstack/react-query";
 import axiosInstanceTs from "../../api/axiosInstance";
 import { toast } from "react-toastify";
 import queryClient from "../../api/queryClientInstance";
-import { AxiosError } from "axios";
 import { RestResponse } from "../../model/RestResponse";
 import { UserRoles } from "../../model/UserRoles";
 import { convertRolesEnumToString } from "../../util/roles-to-string";

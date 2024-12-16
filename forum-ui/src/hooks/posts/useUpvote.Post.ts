@@ -1,6 +1,5 @@
 import axiosInstanceTs from "../../api/axiosInstance";
 import { RestResponse } from "../../model/RestResponse";
-import { toast } from "react-toastify";
 import { PostResponse } from "../../model/PostResponse";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosRequestConfig } from "axios";

@@ -1,10 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import axiosInstanceTs from "../../api/axiosInstance";
 import queryClient from "../../api/queryClientInstance";
 import { PostsKey } from "../../constants/queryKeys";
-import { RestResponse } from "../../model/RestResponse";
 
 const deletePost = async (vars: deletePostVariables) => {
   const config = {

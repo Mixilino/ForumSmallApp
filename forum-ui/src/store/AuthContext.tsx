@@ -1,7 +1,6 @@
 import * as React from "react";
 import { createContext, useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
-import { UserRoles } from "../model/UserRoles";
 import { convertRoleStringToEnum } from "../util/roles-to-string";
 
 interface AuthContextInterface {
