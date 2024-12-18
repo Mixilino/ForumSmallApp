@@ -9,6 +9,8 @@ import {
 import { RiLockPasswordLine, RiUser3Line } from "react-icons/ri";
 import { useSignIn } from "../../hooks/auth/useSignIn";
 import { useSignUp } from "../../hooks/auth/useSignUp";
+import { useIntl } from "react-intl";
+import { messages } from "./messages";
 
 export const AuthForm = () => {
   const [isSignInMode, setIsSignInMode] = useState(true);
@@ -27,18 +29,19 @@ export const AuthForm = () => {
       setIsSignInMode(true);
     }
   };
+  const { formatMessage } = useIntl();
   return (
     <div className="w-96">
       <Card imgSrc="https://vectorlogoseek.com/wp-content/uploads/2019/07/founders-forum-vector-logo.png">
         <div>
           <h3 className="text-3xl font-bold dark:text-white">
-            {isSignInMode ? "Sign In to your account" : "Create an account"}
+            {formatMessage(messages.header, { isSignInMode })}
           </h3>
         </div>
         <form className="flex flex-col gap-4" onSubmit={handleOnSubmit}>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="username" value="Username" />
+              <Label htmlFor="username" value={formatMessage(messages.username)} />
             </div>
             <TextInput
               icon={RiUser3Line}
@@ -51,7 +54,7 @@ export const AuthForm = () => {
           </div>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="password1" value="Your password" />
+              <Label htmlFor="password1" value={formatMessage(messages.password)} />
             </div>
             <TextInput
               id="password1"
@@ -65,11 +68,17 @@ export const AuthForm = () => {
           <div className="flex items-center gap-2">
             <ToggleSwitch
               checked={isSignInMode}
-              label={`Click to ${isSignInMode ? "Register" : "Sign In"}`}
+              label={formatMessage(
+                isSignInMode ? messages.toggleRegister : messages.toggleSignIn
+              )}
               onChange={() => setIsSignInMode((prev) => !prev)}
             />
           </div>
-          <Button type="submit">{isSignInMode ? "Sign In" : "Register"}</Button>
+          <Button type="submit">
+            {formatMessage(
+              isSignInMode ? messages.signInButton : messages.registerButton
+            )}
+          </Button>
         </form>
       </Card>
     </div>

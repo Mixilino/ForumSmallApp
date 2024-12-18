@@ -6,6 +6,8 @@ import { useNewPost } from "../../hooks/posts/useNewPost";
 import { AuthContext } from "../../store/AuthContext";
 import { useEditPost } from "../../hooks/posts/useEditPost";
 import { PostResponse } from "../../model/PostResponse";
+import { useIntl } from 'react-intl';
+import { messages } from './messages';
 
 type NewPostFormProps = {
   categories: PostCategory[];
@@ -26,6 +28,8 @@ export const NewPostForm = ({
   const { editPostFunc } = useEditPost();
 
   const authCtx = useContext(AuthContext);
+  const { formatMessage } = useIntl();
+
   const handleCategoryChange = (selected: any) => {
     setSelectedCategories(selected);
   };
@@ -71,13 +75,19 @@ export const NewPostForm = ({
       <Card>
         <div>
           <h3 className="text-3xl font-bold dark:text-white">
-            {!post ? "Create new post" : "Edit post"}
+            {!post
+              ? formatMessage(messages.createPost)
+              : formatMessage(messages.editPost)
+            }
           </h3>
         </div>
         <form className="flex flex-col gap-4" onSubmit={handleOnCreatePost}>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="post-title" value="Post Title" />
+              <Label
+                htmlFor="post-title"
+                value={formatMessage(messages.postTitle)}
+              />
             </div>
             <TextInput
               id="post-title"
@@ -89,7 +99,10 @@ export const NewPostForm = ({
           </div>
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="post-text" value="Post Text" />
+              <Label
+                htmlFor="post-text"
+                value={formatMessage(messages.postText)}
+              />
             </div>
             <TextInput
               id="post-text"
@@ -101,7 +114,10 @@ export const NewPostForm = ({
           </div>
           <div className="mb-6">
             <div className="mb-2 block">
-              <Label htmlFor="post-categories" value="Categories" />
+              <Label
+                htmlFor="post-categories"
+                value={formatMessage(messages.categories)}
+              />
             </div>
             <Select
               id="post-categories"
@@ -115,7 +131,9 @@ export const NewPostForm = ({
               className="basic-multi-select"
             />
           </div>
-          <Button type="submit">Submit</Button>
+          <Button type="submit">
+            {formatMessage(messages.submit)}
+          </Button>
         </form>
       </Card>
     </div>

@@ -12,6 +12,8 @@ import { ActiveCommentContext } from "../../store/ActiveCommentContext";
 import { AuthContext } from "../../store/AuthContext";
 import { CalculateTime } from "../../util/time-before";
 import { useEditComment } from "../../hooks/comments/useEditComment";
+import { useIntl } from "react-intl";
+import { messages } from "./messages";
 
 type SingleCommentProps = {
   comment: CommentResponse;
@@ -22,6 +24,7 @@ export const SingleComment = ({ comment }: SingleCommentProps) => {
   const { deleteCommentFunc } = useDeleteComment();
   const [editCommentText, setEditCommentText] = useState<string | undefined>();
   const { editCommentFunc } = useEditComment();
+  const { formatMessage } = useIntl();
 
   const onDeleteCommentHandler = () => {
     deleteCommentFunc({
@@ -42,16 +45,17 @@ export const SingleComment = ({ comment }: SingleCommentProps) => {
     <div className="border-b-2 border-b-slate-100 flex flex-col pb-2">
       <div className="flex justify-between items-center pt-1">
         <p className="font-normal text-sm text-gray-700  dark:text-gray-400">
-          Posted by{" "}
-          {authCtx.nameid === parseInt(comment.user.userId)
-            ? " you" + CalculateTime(comment.dateCreated)
-            : comment.user.userName + CalculateTime(comment.dateCreated)}
+          {formatMessage(messages.postedBy, {
+            isCurrentUser: authCtx.nameid === parseInt(comment.user.userId),
+            userName: comment.user.userName,
+            when: CalculateTime(comment.dateCreated)
+          })}
         </p>
         {authCtx.nameid === parseInt(comment.user.userId) && (
           <div className="flex gap-1">
             {!editMode && (
               <>
-                <Tooltip content="Edit">
+                <Tooltip content={formatMessage(messages.edit)}>
                   <RiEdit2Line
                     className="cursor-pointer rounded-lg p-0 hover:bg-gray-100"
                     size={22}
@@ -60,7 +64,7 @@ export const SingleComment = ({ comment }: SingleCommentProps) => {
                     }}
                   />
                 </Tooltip>
-                <Tooltip content="Delete">
+                <Tooltip content={formatMessage(messages.delete)}>
                   <RiDeleteBin6Line
                     className="cursor-pointer rounded-lg p-0 hover:bg-gray-100"
                     size={22}
@@ -71,7 +75,7 @@ export const SingleComment = ({ comment }: SingleCommentProps) => {
             )}
             {editMode && (
               <>
-                <Tooltip content="Submit">
+                <Tooltip content={formatMessage(messages.submit)}>
                   <IoCheckmarkCircleOutline
                     className="cursor-pointer rounded-lg p-0 hover:bg-gray-100"
                     size={22}
@@ -85,7 +89,7 @@ export const SingleComment = ({ comment }: SingleCommentProps) => {
                     }}
                   />
                 </Tooltip>
-                <Tooltip content="Cancel edit">
+                <Tooltip content={formatMessage(messages.cancelEdit)}>
                   <RiCloseCircleLine
                     className="cursor-pointer rounded-lg p-0 hover:bg-gray-100"
                     size={22}

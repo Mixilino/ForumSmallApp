@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { NavBar } from "../components/navbar/NavBar";
-import { useGetAllPosts } from "../hooks/posts/useGetAllPosts";
-import { NewPostForm } from "../components/posts/PostForm";
-import { useGetAllCategories } from "../hooks/categories/useGetCategories";
-import { PostCategory } from "../model/PostCategories";
-import { PostResponse } from "../model/PostResponse";
+import { NavBar } from "../../components/navbar/NavBar";
+import { useGetAllPosts } from "../../hooks/posts/useGetAllPosts";
+import { NewPostForm } from "../../components/posts/PostForm";
+import { useGetAllCategories } from "../../hooks/categories/useGetCategories";
+import { PostCategory } from "../../model/PostCategories";
+import { PostResponse } from "../../model/PostResponse";
 
 export const EditPostPage = () => {
   const params = useParams();
@@ -24,7 +24,6 @@ export const EditPostPage = () => {
 
   return (
     <>
-      <NavBar />
       <div className="mt-52 flex justify-center ">
         <NewPostForm categories={categories} post={post} editMode />
       </div>

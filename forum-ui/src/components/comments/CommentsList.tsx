@@ -4,6 +4,8 @@ import { useNewComment } from "../../hooks/comments/useNewComment";
 import { CommentResponse } from "../../model/CommentResponse";
 import { AuthContext } from "../../store/AuthContext";
 import { SingleComment } from "./SingleComment";
+import { useIntl } from "react-intl";
+import { messages } from "./messages";
 
 type CommentsListProps = {
   comments: CommentResponse[];
@@ -13,17 +15,18 @@ const CommentsList = ({ comments, postId }: CommentsListProps) => {
   const [newCommentText, setNewCommentText] = useState("");
   const authCtx = useContext(AuthContext);
   const { newCommentFunc } = useNewComment();
+  const { formatMessage } = useIntl();
 
   return (
     <>
       <form className="flex justify-between items-center p-6 py-2">
         <div className="flex flex-col justify-center w-10/12">
           <div className="mb-1 block">
-            <Label htmlFor="new-comment" value="New comment" />
+            <Label htmlFor="new-comment" value={formatMessage(messages.newComment)} />
           </div>
           <Textarea
             id="new-comment"
-            placeholder="Comment something interesting"
+            placeholder={formatMessage(messages.placeholderComment)}
             rows={2}
             value={newCommentText}
             onChange={(e) => setNewCommentText(e.target.value)}
@@ -39,7 +42,7 @@ const CommentsList = ({ comments, postId }: CommentsListProps) => {
               });
             }}
           >
-            Comment
+            {formatMessage(messages.comment)}
           </Button>
         </div>
       </form>

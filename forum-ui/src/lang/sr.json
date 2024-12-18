@@ -1,0 +1,167 @@
+{
+  "manageUsersPage.manageUsers": {
+    "defaultMessage": "Upravljaj korisnicima"
+  },
+  "notFoundPage.goTo": {
+    "defaultMessage": "Idi na {isAuthenticated, select, true {Sve objave} other {Auth stranu}}"
+  },
+  "notFoundPage.notFound": {
+    "defaultMessage": "404 Stranica nije pronadjena..."
+  },
+  "postsPage.banned": {
+    "defaultMessage": "Banovani ste!"
+  },
+  "authForm.header": {
+    "defaultMessage": "{isSignInMode, select, true {Prijavite se} other {Napravite nalog}}"
+  },
+  "comments.cancelEdit": {
+    "defaultMessage": "Otkaži izmenu"
+  },
+  "comments.comment": {
+    "defaultMessage": "Komentar"
+  },
+  "comments.delete": {
+    "defaultMessage": "Obriši"
+  },
+  "comments.edit": {
+    "defaultMessage": "Izmeni"
+  },
+  "comments.newComment": {
+    "defaultMessage": "Novi komentar"
+  },
+  "comments.placeholderComment": {
+    "defaultMessage": "Napišite nešto zanimljivo"
+  },
+  "comments.postedBy": {
+    "defaultMessage": "Objavio {isCurrentUser, select, true {vi} other {{userName}} } {when}"
+  },
+  "comments.submit": {
+    "defaultMessage": "Pošalji"
+  },
+  "footer.copyright": {
+    "defaultMessage": "© 2024 ForumSmallApp. Sva prava zadržana."
+  },
+  "footer.language.english": {
+    "defaultMessage": "Engleski"
+  },
+  "footer.language.serbian": {
+    "defaultMessage": "Srpski"
+  },
+  "navbar.links.manageUsers": {
+    "defaultMessage": "Upravljaj korisnicima"
+  },
+  "navbar.links.newPost": {
+    "defaultMessage": "Nova objava"
+  },
+  "navbar.links.posts": {
+    "defaultMessage": "Objave"
+  },
+  "navbar.openMainMenu": {
+    "defaultMessage": "Otvori glavni meni"
+  },
+  "navbar.signOut": {
+    "defaultMessage": "Odjavi se"
+  },
+  "posts.form.button.submit": {
+    "defaultMessage": "Pošalji"
+  },
+  "posts.form.label.categories": {
+    "defaultMessage": "Kategorije"
+  },
+  "posts.form.label.text": {
+    "defaultMessage": "Tekst objave"
+  },
+  "posts.form.label.title": {
+    "defaultMessage": "Naslov objave"
+  },
+  "posts.form.title.create": {
+    "defaultMessage": "Napravi novu objavu"
+  },
+  "posts.form.title.edit": {
+    "defaultMessage": "Izmeni objavu"
+  },
+  "posts.list.createPostPrompt": {
+    "defaultMessage": "Idite na stranicu Nova objava da napravite objavu"
+  },
+  "posts.list.filterByCategory": {
+    "defaultMessage": "Filtriraj po kategoriji"
+  },
+  "posts.list.noPosts": {
+    "defaultMessage": "Nema objava"
+  },
+  "posts.modal.deleteTooltip": {
+    "defaultMessage": "Obriši"
+  },
+  "posts.modal.editTooltip": {
+    "defaultMessage": "Izmeni"
+  },
+  "posts.single.comments": {
+    "defaultMessage": "Komentari: {count}"
+  },
+  "posts.single.downvoteTooltip": {
+    "defaultMessage": "Negativan glas"
+  },
+  "posts.single.openPostTooltip": {
+    "defaultMessage": "Otvori objavu"
+  },
+  "posts.single.postedBy": {
+    "defaultMessage": "Objavio"
+  },
+  "posts.single.upvoteTooltip": {
+    "defaultMessage": "Pozitivan glas"
+  },
+  "posts.single.you": {
+    "defaultMessage": "vi"
+  },
+  "users.list.action": {
+    "defaultMessage": "Akcija"
+  },
+  "users.list.role": {
+    "defaultMessage": "Uloga"
+  },
+  "users.list.userName": {
+    "defaultMessage": "Korisničko ime"
+  },
+  "users.single.banUser": {
+    "defaultMessage": "Banuj korisnika"
+  },
+  "users.single.demoteToRegular": {
+    "defaultMessage": "Vrati na običnog korisnika"
+  },
+  "users.single.promoteToAdmin": {
+    "defaultMessage": "Unapredi u admina"
+  },
+  "users.single.unbanUser": {
+    "defaultMessage": "Ukloni ban"
+  },
+  "authForm.password": {
+    "defaultMessage": "Vasa lozinka"
+  },
+  "authForm.registerButton": {
+    "defaultMessage": "Registrujte se"
+  },
+  "authForm.signInButton": {
+    "defaultMessage": "Prijavite se"
+  },
+  "authForm.toggleRegister": {
+    "defaultMessage": "Kliknite da se registrujete"
+  },
+  "authForm.toggleSignIn": {
+    "defaultMessage": "Kliknite da se prijavite"
+  },
+  "authForm.username": {
+    "defaultMessage": "Korisničko ime"
+  },
+  "time.daysAgo": {
+    "defaultMessage": ", pre {days} dana"
+  },
+  "time.hoursAgo": {
+    "defaultMessage": ", pre {hours} sati"
+  },
+  "time.minutesAgo": {
+    "defaultMessage": ", pre {minutes} minuta"
+  },
+  "time.secondsAgo": {
+    "defaultMessage": ", pre {seconds} sekundi"
+  }
+}

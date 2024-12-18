@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import { UserRoles } from "../model/UserRoles";
-import { AuthPage } from "../pages/AuthPage";
-import { EditPostPage } from "../pages/EditPostPage";
-import { ManageUsersPage } from "../pages/ManageUsersPage";
-import { NewPostPage } from "../pages/NewPostPage";
-import { NotFoundPage } from "../pages/NotFoundPage";
-import { PostsPage } from "../pages/PostsPage";
+import { AuthPage } from "../pages/Auth/AuthPage";
+import { NewPostPage } from "../pages/NewPost/NewPostPage";
+import { NotFoundPage } from "../pages/NotFound/NotFoundPage";
 import { AuthContext } from "../store/AuthContext";
+import { ManageUsersPage } from "../pages/ManageUsers/ManageUsersPage";
+import { EditPostPage } from "../pages/EditPost/EditPostPage";
+import { PostsPage } from "../pages/Posts/PostsPage";
+import Layout from "../components/Layout/Layout";
 
 export const AppRoutes = () => {
   const authCtx = useContext(AuthContext);

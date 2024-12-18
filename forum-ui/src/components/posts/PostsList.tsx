@@ -7,6 +7,8 @@ import { SinglePostInfoModal } from "./SinglePostInfoModal";
 import { ActivePostContext } from "../../store/ActivePostContext";
 import { AuthContext } from "../../store/AuthContext";
 import { UserRoles } from "../../model/UserRoles";
+import { useIntl } from 'react-intl';
+import { messages } from './messages';
 
 interface PostsListType {
   posts: PostResponse[];
@@ -18,6 +20,7 @@ export const PostsList = ({ posts, categories }: PostsListType) => {
   );
   const activePostCtx = useContext(ActivePostContext);
   const authCtx = useContext(AuthContext);
+  const { formatMessage } = useIntl();
 
   const handleCategoryChange = (selected: any) => {
     setSelectedCategories(selected);
@@ -35,10 +38,10 @@ export const PostsList = ({ posts, categories }: PostsListType) => {
     return (
       <div className={authCtx.role !== UserRoles.Banned ? "mt-20" : ""}>
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          No posts
-        </h5>{" "}
+          {formatMessage(messages.noPosts)}
+        </h5>
         <p className="font-normal text-gray-700 dark:text-gray-400">
-          Go to New Post page to create a post
+          {formatMessage(messages.createPostPrompt)}
         </p>
       </div>
     );
@@ -64,7 +67,7 @@ export const PostsList = ({ posts, categories }: PostsListType) => {
           options={categories}
           className="basic-multi-select w-3/4 md:w-144"
           isSearchable={false}
-          placeholder="Filter by category"
+          placeholder={formatMessage(messages.filterByCategory)}
         />
       </div>
       <ul className="flex flex-col items-center gap-10 mb-20 mt-10">

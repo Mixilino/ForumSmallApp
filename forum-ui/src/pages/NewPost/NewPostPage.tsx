@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { NavBar } from "../components/navbar/NavBar";
-import { NewPostForm } from "../components/posts/PostForm";
-import { useGetAllCategories } from "../hooks/categories/useGetCategories";
-import { PostCategory } from "../model/PostCategories";
+import { NewPostForm } from "../../components/posts/PostForm";
+import { useGetAllCategories } from "../../hooks/categories/useGetCategories";
+import { PostCategory } from "../../model/PostCategories";
 
 export const NewPostPage = () => {
   const { postCategories } = useGetAllCategories();
@@ -14,7 +13,6 @@ export const NewPostPage = () => {
 
   return (
     <>
-      <NavBar />
       <div className="mt-52 flex justify-center ">
         <NewPostForm categories={categories} />
       </div>

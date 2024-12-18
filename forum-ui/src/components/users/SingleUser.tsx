@@ -10,11 +10,14 @@ import { UserRoles } from "../../model/UserRoles";
 import { UserRoleResponse } from "../../model/UserRolesResponse";
 import { AuthContext } from "../../store/AuthContext";
 import { convertRolesEnumToString } from "../../util/roles-to-string";
+import { useIntl } from 'react-intl';
+import { messages } from './messages';
 
 interface SingleUserProps {
   user: UserRoleResponse;
 }
 export const SingleUser = ({ user }: SingleUserProps) => {
+  const { formatMessage } = useIntl();
   const authCtx = useContext(AuthContext);
   const { editUserRoleFunc } = useChangeRole();
 
@@ -28,7 +31,7 @@ export const SingleUser = ({ user }: SingleUserProps) => {
         {authCtx.nameid !== user.userId && (
           <div className="flex justify-center gap-1">
             {user.role !== UserRoles.Admin && (
-              <Tooltip content="Promote to admin">
+              <Tooltip content={formatMessage(messages.promoteToAdmin)}>
                 <RiUserHeartLine
                   className="cursor-pointer rounded-lg p-2 hover:bg-gray-100"
                   size={40}
@@ -46,8 +49,8 @@ export const SingleUser = ({ user }: SingleUserProps) => {
               <Tooltip
                 content={
                   user.role === UserRoles.Admin
-                    ? "Demote to regular user"
-                    : "Unban user"
+                    ? formatMessage(messages.demoteToRegular)
+                    : formatMessage(messages.unbanUser)
                 }
               >
                 <RiUserAddLine
@@ -64,7 +67,7 @@ export const SingleUser = ({ user }: SingleUserProps) => {
               </Tooltip>
             )}
             {user.role !== UserRoles.Banned && (
-              <Tooltip content="Ban user">
+              <Tooltip content={formatMessage(messages.banUser)}>
                 <RiUserUnfollowLine
                   className="cursor-pointer rounded-lg p-2 hover:bg-gray-100"
                   size={40}

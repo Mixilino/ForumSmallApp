@@ -13,6 +13,8 @@ import { useGetAllPosts } from "../../hooks/posts/useGetAllPosts";
 import { useUpvotePost } from "../../hooks/posts/useUpvote.Post";
 import ActiveCommentContextProvider from "../../store/ActiveCommentContext";
 import { Tooltip } from "flowbite-react";
+import { useIntl } from 'react-intl';
+import { messages } from './messages';
 
 type SinglePostInfoProps = {
   postId: number;
@@ -25,6 +27,7 @@ export const SinglePostInfoModal = ({ postId }: SinglePostInfoProps) => {
   const navigate = useNavigate();
   const { upvoteFunc } = useUpvotePost();
   const { posts } = useGetAllPosts();
+  const { formatMessage } = useIntl();
 
   const [post, setPost] = useState<PostResponse | null>(null);
 
@@ -72,9 +75,9 @@ export const SinglePostInfoModal = ({ postId }: SinglePostInfoProps) => {
     >
       <div className="p-6 pb-2 ">
         <p className="font-normal text-sm text-gray-700  dark:text-gray-400">
-          Posted by{" "}
+          {formatMessage(messages.postedBy)}{" "}
           {authCtx.nameid === parseInt(post.user.userId)
-            ? " you" + CalculateTime(post.datePosted)
+            ? formatMessage(messages.you) + CalculateTime(post.datePosted)
             : post.user.userName + CalculateTime(post.datePosted)}
         </p>
         <div className="flex justify-between items-center">
@@ -83,14 +86,14 @@ export const SinglePostInfoModal = ({ postId }: SinglePostInfoProps) => {
           </h5>
           {authCtx.nameid === parseInt(post.user.userId) && (
             <div className="flex gap-1">
-              <Tooltip content="Edit">
+              <Tooltip content={formatMessage(messages.editTooltip)}>
                 <RiEdit2Line
                   className="cursor-pointer rounded-lg p-2 hover:bg-gray-100"
                   size={40}
                   onClick={() => navigate(`/edit-post/${post.postId}`)}
                 />
               </Tooltip>
-              <Tooltip content="Delete">
+              <Tooltip content={formatMessage(messages.deleteTooltip)}>
                 <RiDeleteBin6Line
                   className="cursor-pointer rounded-lg p-2 hover:bg-gray-100"
                   size={40}
@@ -116,7 +119,7 @@ export const SinglePostInfoModal = ({ postId }: SinglePostInfoProps) => {
       </div>
       <div className="border-b-2 flex justify-between pt-2 mx-6 pb-2">
         <div className="flex flex-row items-center gap-2">
-          <Tooltip content="Upvote">
+          <Tooltip content={formatMessage(messages.upvoteTooltip)}>
             <BiUpvote
               className={`${
                 post.voted && post.upvote && "bg-gray-100"
@@ -129,7 +132,7 @@ export const SinglePostInfoModal = ({ postId }: SinglePostInfoProps) => {
             />
           </Tooltip>
           <span>{post.votesCount}</span>
-          <Tooltip content="Downvote">
+          <Tooltip content={formatMessage(messages.downvoteTooltip)}>
             <BiDownvote
               className={`${
                 post.voted && !post.upvote && "bg-gray-100"

@@ -6,6 +6,8 @@ import { CalculateTime } from "../../util/time-before";
 import { ActivePostContext } from "../../store/ActivePostContext";
 import { AuthContext } from "../../store/AuthContext";
 import { useUpvotePost } from "../../hooks/posts/useUpvote.Post";
+import { useIntl } from 'react-intl';
+import { messages } from './messages';
 
 interface SinglePostProps {
   post: PostResponse;
@@ -14,6 +16,7 @@ export const SinglePost = ({ post }: SinglePostProps) => {
   const activePostCtx = useContext(ActivePostContext);
   const authCtx = useContext(AuthContext);
   const { upvoteFunc } = useUpvotePost();
+  const { formatMessage } = useIntl();
 
   const voteFuncHandler = (vote: boolean) => {
     upvoteFunc({
@@ -31,10 +34,10 @@ export const SinglePost = ({ post }: SinglePostProps) => {
       <Card>
         <div>
           <p className="font-normal text-sm text-gray-700  dark:text-gray-400">
-            Posted by{" "}
+            {formatMessage(messages.postedBy)}{" "}
             {authCtx.nameid === parseInt(post.user.userId)
-              ? " you" + CalculateTime(post.datePosted)
-              : post.user.userName + CalculateTime(post.datePosted)}
+              ? formatMessage(messages.you) + CalculateTime(post.datePosted, formatMessage)
+              : post.user.userName + CalculateTime(post.datePosted, formatMessage)}
           </p>
           <h5 className="text-2xl line-clamp-3 mb-3 font-bold tracking-tight text-gray-900 dark:text-white">
             {post.postTitle}
@@ -55,7 +58,7 @@ export const SinglePost = ({ post }: SinglePostProps) => {
         </div>
         <div className="border-t-2 flex justify-between pt-2">
           <div className="flex flex-row items-center gap-2">
-            <Tooltip content="Upvote">
+            <Tooltip content={formatMessage(messages.upvoteTooltip)}>
               <BiUpvote
                 className={`${
                   post.voted && post.upvote && "bg-gray-100"
@@ -68,7 +71,7 @@ export const SinglePost = ({ post }: SinglePostProps) => {
               />
             </Tooltip>
             <span>{post.votesCount}</span>
-            <Tooltip content="Downvote">
+            <Tooltip content={formatMessage(messages.downvoteTooltip)}>
               <BiDownvote
                 className={`${
                   post.voted && !post.upvote && "bg-gray-100"
@@ -81,7 +84,7 @@ export const SinglePost = ({ post }: SinglePostProps) => {
               />
             </Tooltip>
           </div>
-          <Tooltip content="Open post">
+          <Tooltip content={formatMessage(messages.openPostTooltip)}>
             <div className="flex flex-row gap-2 rounded-lg p-2 items-center cursor-pointer hover:bg-gray-100">
               <BiCommentDetail size={22} />
               <p>Comments: {post.comments.length}</p>

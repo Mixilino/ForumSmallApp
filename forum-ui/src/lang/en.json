@@ -1,0 +1,167 @@
+{
+  "authForm.header": {
+    "defaultMessage": "{isSignInMode, select, true {Sign In to your account} other {Create an account}}"
+  },
+  "authForm.password": {
+    "defaultMessage": "Your password"
+  },
+  "authForm.registerButton": {
+    "defaultMessage": "Register"
+  },
+  "authForm.signInButton": {
+    "defaultMessage": "Sign In"
+  },
+  "authForm.toggleRegister": {
+    "defaultMessage": "Click to Register"
+  },
+  "authForm.toggleSignIn": {
+    "defaultMessage": "Click to Sign In"
+  },
+  "authForm.username": {
+    "defaultMessage": "Username"
+  },
+  "comments.cancelEdit": {
+    "defaultMessage": "Edit"
+  },
+  "comments.comment": {
+    "defaultMessage": "Comment"
+  },
+  "comments.delete": {
+    "defaultMessage": "Delete"
+  },
+  "comments.edit": {
+    "defaultMessage": "Edit"
+  },
+  "comments.newComment": {
+    "defaultMessage": "New comment"
+  },
+  "comments.placeholderComment": {
+    "defaultMessage": "Comment something interesting"
+  },
+  "comments.postedBy": {
+    "defaultMessage": "Posted by {isCurrentUser, select, true {you} other {{userName}} } {when}"
+  },
+  "comments.submit": {
+    "defaultMessage": "Submit"
+  },
+  "footer.copyright": {
+    "defaultMessage": "© 2024 ForumSmallApp. All rights reserved."
+  },
+  "footer.language.english": {
+    "defaultMessage": "English"
+  },
+  "footer.language.serbian": {
+    "defaultMessage": "Serbian"
+  },
+  "manageUsersPage.manageUsers": {
+    "defaultMessage": "Manage Users"
+  },
+  "navbar.links.manageUsers": {
+    "defaultMessage": "Manage users"
+  },
+  "navbar.links.newPost": {
+    "defaultMessage": "New Post"
+  },
+  "navbar.links.posts": {
+    "defaultMessage": "Posts"
+  },
+  "navbar.openMainMenu": {
+    "defaultMessage": "Open main menu"
+  },
+  "navbar.signOut": {
+    "defaultMessage": "Sign Out"
+  },
+  "notFoundPage.goTo": {
+    "defaultMessage": "Go to {isAuthenticated, select, true {All Posts Page} other {Auth Page}}"
+  },
+  "notFoundPage.notFound": {
+    "defaultMessage": "404 Page not found..."
+  },
+  "posts.form.button.submit": {
+    "defaultMessage": "Submit"
+  },
+  "posts.form.label.categories": {
+    "defaultMessage": "Categories"
+  },
+  "posts.form.label.text": {
+    "defaultMessage": "Post Text"
+  },
+  "posts.form.label.title": {
+    "defaultMessage": "Post Title"
+  },
+  "posts.form.title.create": {
+    "defaultMessage": "Create new post"
+  },
+  "posts.form.title.edit": {
+    "defaultMessage": "Edit post"
+  },
+  "posts.list.createPostPrompt": {
+    "defaultMessage": "Go to New Post page to create a post"
+  },
+  "posts.list.filterByCategory": {
+    "defaultMessage": "Filter by category"
+  },
+  "posts.list.noPosts": {
+    "defaultMessage": "No posts"
+  },
+  "posts.modal.deleteTooltip": {
+    "defaultMessage": "Delete"
+  },
+  "posts.modal.editTooltip": {
+    "defaultMessage": "Edit"
+  },
+  "posts.single.comments": {
+    "defaultMessage": "Comments: {count}"
+  },
+  "posts.single.downvoteTooltip": {
+    "defaultMessage": "Downvote"
+  },
+  "posts.single.openPostTooltip": {
+    "defaultMessage": "Open post"
+  },
+  "posts.single.postedBy": {
+    "defaultMessage": "Posted by"
+  },
+  "posts.single.upvoteTooltip": {
+    "defaultMessage": "Upvote"
+  },
+  "posts.single.you": {
+    "defaultMessage": "you"
+  },
+  "postsPage.banned": {
+    "defaultMessage": "You are banned"
+  },
+  "time.daysAgo": {
+    "defaultMessage": ", {days} days ago"
+  },
+  "time.hoursAgo": {
+    "defaultMessage": ", {hours} hours ago"
+  },
+  "time.minutesAgo": {
+    "defaultMessage": ", {minutes} minutes ago"
+  },
+  "time.secondsAgo": {
+    "defaultMessage": ", {seconds} seconds ago"
+  },
+  "users.list.action": {
+    "defaultMessage": "Action"
+  },
+  "users.list.role": {
+    "defaultMessage": "Role"
+  },
+  "users.list.userName": {
+    "defaultMessage": "UserName"
+  },
+  "users.single.banUser": {
+    "defaultMessage": "Ban user"
+  },
+  "users.single.demoteToRegular": {
+    "defaultMessage": "Demote to regular user"
+  },
+  "users.single.promoteToAdmin": {
+    "defaultMessage": "Promote to admin"
+  },
+  "users.single.unbanUser": {
+    "defaultMessage": "Unban user"
+  }
+}
