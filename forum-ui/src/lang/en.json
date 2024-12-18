@@ -50,6 +50,9 @@
   "footer.language.english": {
     "defaultMessage": "English"
   },
+  "footer.language.french": {
+    "defaultMessage": "French"
+  },
   "footer.language.serbian": {
     "defaultMessage": "Serbian"
   },
@@ -76,6 +79,21 @@
   },
   "notFoundPage.notFound": {
     "defaultMessage": "404 Page not found..."
+  },
+  "post.categories.required": {
+    "defaultMessage": "Please select at least one category"
+  },
+  "post.text.minLength": {
+    "defaultMessage": "Post text must be at least 3 characters long"
+  },
+  "post.text.required": {
+    "defaultMessage": "Post text is required"
+  },
+  "post.title.minLength": {
+    "defaultMessage": "Title must be at least 3 characters long"
+  },
+  "post.title.required": {
+    "defaultMessage": "Title is required"
   },
   "posts.form.button.submit": {
     "defaultMessage": "Submit"

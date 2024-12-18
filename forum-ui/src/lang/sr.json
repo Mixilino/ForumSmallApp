@@ -3,10 +3,10 @@
     "defaultMessage": "Upravljaj korisnicima"
   },
   "notFoundPage.goTo": {
-    "defaultMessage": "Idi na {isAuthenticated, select, true {Sve objave} other {Auth stranu}}"
+    "defaultMessage": "Idi na {isAuthenticated, select, true {stranicu sa objavama} other {stranicu za prijavu}}"
   },
   "notFoundPage.notFound": {
-    "defaultMessage": "404 Stranica nije pronadjena..."
+    "defaultMessage": "404 Stranica nije pronađena..."
   },
   "postsPage.banned": {
     "defaultMessage": "Banovani ste!"
@@ -163,5 +163,23 @@
   },
   "time.secondsAgo": {
     "defaultMessage": ", pre {seconds} sekundi"
+  },
+  "post.categories.required": {
+    "defaultMessage": "Molimo izaberite bar jednu kategoriju"
+  },
+  "post.text.minLength": {
+    "defaultMessage": "Tekst objave mora imati najmanje 3 karaktera"
+  },
+  "post.text.required": {
+    "defaultMessage": "Tekst objave je obavezan"
+  },
+  "post.title.minLength": {
+    "defaultMessage": "Naslov mora imati najmanje 3 karaktera"
+  },
+  "post.title.required": {
+    "defaultMessage": "Naslov je obavezan"
+  },
+  "footer.language.french": {
+    "defaultMessage": "Francuski"
   }
 }

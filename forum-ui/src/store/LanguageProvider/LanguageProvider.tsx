@@ -4,22 +4,32 @@ import { IntlProvider } from 'react-intl';
 
 const LANGUAGE_STORAGE_NAME = 'forum-ui-language' as const;
 
-export type SupportedLanguages = 'en' | 'sr';
+export type SupportedLanguages = 'en' | 'sr' | 'fr' | 'ar';
 
 interface LanguageContextType {
   language: SupportedLanguages;
   changeLanguage: (lang: SupportedLanguages) => void;
+  isRTL: boolean;
 }
+
+const RTL_LANGUAGES = ['ar'];
 
 const LanguageContext = React.createContext<LanguageContextType>({
   language: 'en',
   changeLanguage: () => undefined,
+  isRTL: false,
 });
 
 const LOCALE_MAP = new Map<string, SupportedLanguages>([
   ['sr', 'sr'],
   ['sh', 'sr'],
-  ['en', 'en']
+  ['en', 'en'],
+  ['fr', 'fr'],
+  ['fr-FR', 'fr'],
+  ['fr-CA', 'fr'],
+  ['ar', 'ar'],
+  ['ar-SA', 'ar'],
+  ['ar-EG', 'ar']
 ]);
 
 const storage = {
@@ -59,18 +69,29 @@ export async function loadMessages(language: SupportedLanguages) {
   }
 }
 
-interface LanguageProviderProps {
-  children: React.ReactNode;
-}
+export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [language, setLanguage] = React.useState<SupportedLanguages>(() => {
+    const stored = storage.read();
+    if (stored) return stored;
 
-const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = React.useState<SupportedLanguages>(detectInitialLanguage());
+    const browserLang = navigator.language.toLowerCase();
+    return LOCALE_MAP.get(browserLang) || 'en';
+  });
+
   const [messages, setMessages] = React.useState<Record<string, string> | null>(null);
+  const isRTL = RTL_LANGUAGES.includes(language);
 
-  const changeLanguage = React.useCallback((lang: SupportedLanguages) => {
-    setLanguage(lang);
-    storage.write(lang);
+  const changeLanguage = React.useCallback((newLang: SupportedLanguages) => {
+    setLanguage(newLang);
+    storage.write(newLang);
+    // Update document direction
+    document.dir = RTL_LANGUAGES.includes(newLang) ? 'rtl' : 'ltr';
   }, []);
+
+  // Set initial direction
+  React.useEffect(() => {
+    document.dir = isRTL ? 'rtl' : 'ltr';
+  }, [isRTL]);
 
   React.useEffect(() => {
     const fetchMessages = async () => {
@@ -86,7 +107,7 @@ const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   }
 
   return (
-    <LanguageContext.Provider value={{ language, changeLanguage }}>
+    <LanguageContext.Provider value={{ language, changeLanguage, isRTL }}>
       <IntlProvider messages={messages} locale={language} defaultLocale="en">
         {children}
       </IntlProvider>

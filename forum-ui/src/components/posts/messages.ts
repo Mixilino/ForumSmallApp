@@ -69,4 +69,24 @@ export const messages = defineMessages({
     id: 'posts.modal.deleteTooltip',
     defaultMessage: 'Delete',
   },
+  titleRequired: {
+    id: 'post.title.required',
+    defaultMessage: 'Title is required'
+  },
+  titleMinLength: {
+    id: 'post.title.minLength',
+    defaultMessage: 'Title must be at least 3 characters long'
+  },
+  textRequired: {
+    id: 'post.text.required',
+    defaultMessage: 'Post text is required'
+  },
+  textMinLength: {
+    id: 'post.text.minLength',
+    defaultMessage: 'Post text must be at least 3 characters long'
+  },
+  categoriesRequired: {
+    id: 'post.categories.required',
+    defaultMessage: 'Please select at least one category'
+  }
 }); 
