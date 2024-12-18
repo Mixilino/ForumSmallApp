@@ -1,0 +1,185 @@
+{
+  "authForm.header": {
+    "defaultMessage": "{isSignInMode, select, true {Connectez-vous à votre compte} other {Créer un compte}}"
+  },
+  "authForm.password": {
+    "defaultMessage": "Votre mot de passe"
+  },
+  "authForm.registerButton": {
+    "defaultMessage": "S'inscrire"
+  },
+  "authForm.signInButton": {
+    "defaultMessage": "Se connecter"
+  },
+  "authForm.toggleRegister": {
+    "defaultMessage": "Cliquez pour vous inscrire"
+  },
+  "authForm.toggleSignIn": {
+    "defaultMessage": "Cliquez pour vous connecter"
+  },
+  "authForm.username": {
+    "defaultMessage": "Nom d'utilisateur"
+  },
+  "footer.copyright": {
+    "defaultMessage": "© 2024 ForumSmallApp. Tous droits réservés."
+  },
+  "footer.language.english": {
+    "defaultMessage": "Anglais"
+  },
+  "footer.language.serbian": {
+    "defaultMessage": "Serbe"
+  },
+  "footer.language.french": {
+    "defaultMessage": "Français"
+  },
+  "comments.cancelEdit": {
+    "defaultMessage": "Annuler la modification"
+  },
+  "comments.comment": {
+    "defaultMessage": "Commentaire"
+  },
+  "comments.delete": {
+    "defaultMessage": "Supprimer"
+  },
+  "comments.edit": {
+    "defaultMessage": "Modifier"
+  },
+  "comments.newComment": {
+    "defaultMessage": "Nouveau commentaire"
+  },
+  "comments.placeholderComment": {
+    "defaultMessage": "Écrivez quelque chose d'intéressant"
+  },
+  "comments.postedBy": {
+    "defaultMessage": "Publié par {isCurrentUser, select, true {vous} other {{userName}} } {when}"
+  },
+  "comments.submit": {
+    "defaultMessage": "Envoyer"
+  },
+  "manageUsersPage.manageUsers": {
+    "defaultMessage": "Gérer les utilisateurs"
+  },
+  "navbar.links.manageUsers": {
+    "defaultMessage": "Gérer les utilisateurs"
+  },
+  "navbar.links.newPost": {
+    "defaultMessage": "Nouvelle publication"
+  },
+  "navbar.links.posts": {
+    "defaultMessage": "Publications"
+  },
+  "navbar.openMainMenu": {
+    "defaultMessage": "Ouvrir le menu principal"
+  },
+  "navbar.signOut": {
+    "defaultMessage": "Se déconnecter"
+  },
+  "notFoundPage.goTo": {
+    "defaultMessage": "Aller à la {isAuthenticated, select, true {page des publications} other {page de connexion}}"
+  },
+  "notFoundPage.notFound": {
+    "defaultMessage": "404 Page non trouvée..."
+  },
+  "post.categories.required": {
+    "defaultMessage": "Veuillez sélectionner au moins une catégorie"
+  },
+  "post.text.minLength": {
+    "defaultMessage": "Le texte doit contenir au moins 3 caractères"
+  },
+  "post.text.required": {
+    "defaultMessage": "Le texte est requis"
+  },
+  "post.title.minLength": {
+    "defaultMessage": "Le titre doit contenir au moins 3 caractères"
+  },
+  "post.title.required": {
+    "defaultMessage": "Le titre est requis"
+  },
+  "posts.form.button.submit": {
+    "defaultMessage": "Envoyer"
+  },
+  "posts.form.label.categories": {
+    "defaultMessage": "Catégories"
+  },
+  "posts.form.label.text": {
+    "defaultMessage": "Texte de la publication"
+  },
+  "posts.form.label.title": {
+    "defaultMessage": "Titre de la publication"
+  },
+  "posts.form.title.create": {
+    "defaultMessage": "Créer une nouvelle publication"
+  },
+  "posts.form.title.edit": {
+    "defaultMessage": "Modifier la publication"
+  },
+  "posts.list.createPostPrompt": {
+    "defaultMessage": "Allez à la page Nouvelle Publication pour créer une publication"
+  },
+  "posts.list.filterByCategory": {
+    "defaultMessage": "Filtrer par catégorie"
+  },
+  "posts.list.noPosts": {
+    "defaultMessage": "Aucune publication"
+  },
+  "posts.modal.deleteTooltip": {
+    "defaultMessage": "Supprimer"
+  },
+  "posts.modal.editTooltip": {
+    "defaultMessage": "Modifier"
+  },
+  "posts.single.comments": {
+    "defaultMessage": "Commentaires : {count}"
+  },
+  "posts.single.downvoteTooltip": {
+    "defaultMessage": "Vote négatif"
+  },
+  "posts.single.openPostTooltip": {
+    "defaultMessage": "Ouvrir la publication"
+  },
+  "posts.single.postedBy": {
+    "defaultMessage": "Publié par"
+  },
+  "posts.single.upvoteTooltip": {
+    "defaultMessage": "Vote positif"
+  },
+  "posts.single.you": {
+    "defaultMessage": "vous"
+  },
+  "postsPage.banned": {
+    "defaultMessage": "Vous êtes banni"
+  },
+  "time.daysAgo": {
+    "defaultMessage": "il y a {days} jours"
+  },
+  "time.hoursAgo": {
+    "defaultMessage": "il y a {hours} heures"
+  },
+  "time.minutesAgo": {
+    "defaultMessage": "il y a {minutes} minutes"
+  },
+  "time.secondsAgo": {
+    "defaultMessage": "il y a {seconds} secondes"
+  },
+  "users.list.action": {
+    "defaultMessage": "Action"
+  },
+  "users.list.role": {
+    "defaultMessage": "Rôle"
+  },
+  "users.list.userName": {
+    "defaultMessage": "Nom d'utilisateur"
+  },
+  "users.single.banUser": {
+    "defaultMessage": "Bannir l'utilisateur"
+  },
+  "users.single.demoteToRegular": {
+    "defaultMessage": "Rétrograder en utilisateur normal"
+  },
+  "users.single.promoteToAdmin": {
+    "defaultMessage": "Promouvoir administrateur"
+  },
+  "users.single.unbanUser": {
+    "defaultMessage": "Débannir l'utilisateur"
+  }
+}

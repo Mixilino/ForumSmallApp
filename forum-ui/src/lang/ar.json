@@ -1,0 +1,39 @@
+{
+  "authForm.header": {
+    "defaultMessage": "{isSignInMode, select, true {تسجيل الدخول إلى حسابك} other {إنشاء حساب}}"
+  },
+  "authForm.password": {
+    "defaultMessage": "كلمة المرور"
+  },
+  "authForm.registerButton": {
+    "defaultMessage": "تسجيل"
+  },
+  "authForm.signInButton": {
+    "defaultMessage": "تسجيل الدخول"
+  },
+  "authForm.toggleRegister": {
+    "defaultMessage": "انقر للتسجيل"
+  },
+  "authForm.toggleSignIn": {
+    "defaultMessage": "انقر لتسجيل الدخول"
+  },
+  "authForm.username": {
+    "defaultMessage": "اسم المستخدم"
+  },
+  "footer.copyright": {
+    "defaultMessage": "© 2024 ForumSmallApp. جميع الحقوق محفوظة."
+  },
+  "footer.language.english": {
+    "defaultMessage": "الإنجليزية"
+  },
+  "footer.language.serbian": {
+    "defaultMessage": "الصربية"
+  },
+  "footer.language.french": {
+    "defaultMessage": "الفرنسية"
+  },
+  "footer.language.arabic": {
+    "defaultMessage": "العربية"
+  }
+  // ... add all other translations
+} 
