@@ -77,8 +77,8 @@ export const SinglePostInfoModal = ({ postId }: SinglePostInfoProps) => {
         <p className="font-normal text-sm text-gray-700  dark:text-gray-400">
           {formatMessage(messages.postedBy)}{" "}
           {authCtx.nameid === parseInt(post.user.userId)
-            ? formatMessage(messages.you) + CalculateTime(post.datePosted)
-            : post.user.userName + CalculateTime(post.datePosted)}
+            ? formatMessage(messages.you) + CalculateTime(post.datePosted, formatMessage)
+            : post.user.userName + CalculateTime(post.datePosted, formatMessage)}
         </p>
         <div className="flex justify-between items-center">
           <h5 className="text-2xl line-clamp-3 mb-3 font-bold tracking-tight text-gray-900 dark:text-white">

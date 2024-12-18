@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../store/AuthContext";
 import { useIntl } from "react-intl";
 import { messages } from "./messages";
+import Layout from "../../components/Layout/Layout";
 
 export const NotFoundPage = () => {
   const authCtx = useContext(AuthContext);
@@ -11,17 +12,19 @@ export const NotFoundPage = () => {
   const { formatMessage } = useIntl();
 
   return (
-    <div className="flex justify-center flex-col items-center">
-      <h1 className="mb-10 text-4xl text-center mt-10 font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-        {formatMessage(messages.notFound)}
-      </h1>
-      <Button
-        onClick={() => {
-          navigate(authCtx.isAuthenticated ? "/posts" : "/auth");
-        }}
-      >
-        {formatMessage(messages.goTo, { isAuthenticated: authCtx.isAuthenticated })}
-      </Button>
-    </div>
+    <Layout>
+      <div className="flex justify-center flex-col items-center">
+        <h1 className="mb-10 text-4xl text-center mt-10 font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+          {formatMessage(messages.notFound)}
+        </h1>
+        <Button
+          onClick={() => {
+            navigate(authCtx.isAuthenticated ? "/posts" : "/auth");
+          }}
+        >
+          {formatMessage(messages.goTo, { isAuthenticated: authCtx.isAuthenticated })}
+        </Button>
+      </div>
+    </Layout>
   );
 };

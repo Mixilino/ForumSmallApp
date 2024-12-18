@@ -48,7 +48,7 @@ export const SingleComment = ({ comment }: SingleCommentProps) => {
           {formatMessage(messages.postedBy, {
             isCurrentUser: authCtx.nameid === parseInt(comment.user.userId),
             userName: comment.user.userName,
-            when: CalculateTime(comment.dateCreated)
+            when: CalculateTime(comment.dateCreated, formatMessage)
           })}
         </p>
         {authCtx.nameid === parseInt(comment.user.userId) && (
