@@ -181,5 +181,8 @@
   },
   "users.single.unbanUser": {
     "defaultMessage": "Débannir l'utilisateur"
+  },
+  "footer.language.arabic": {
+    "defaultMessage": "TODO: Arabic"
   }
 }

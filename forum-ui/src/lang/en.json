@@ -47,6 +47,9 @@
   "footer.copyright": {
     "defaultMessage": "© 2024 ForumSmallApp. All rights reserved."
   },
+  "footer.language.arabic": {
+    "defaultMessage": "Arabic"
+  },
   "footer.language.english": {
     "defaultMessage": "English"
   },

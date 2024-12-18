@@ -1,39 +1,188 @@
 {
-  "authForm.header": {
-    "defaultMessage": "{isSignInMode, select, true {تسجيل الدخول إلى حسابك} other {إنشاء حساب}}"
-  },
-  "authForm.password": {
-    "defaultMessage": "كلمة المرور"
-  },
-  "authForm.registerButton": {
-    "defaultMessage": "تسجيل"
-  },
-  "authForm.signInButton": {
-    "defaultMessage": "تسجيل الدخول"
-  },
-  "authForm.toggleRegister": {
-    "defaultMessage": "انقر للتسجيل"
-  },
-  "authForm.toggleSignIn": {
-    "defaultMessage": "انقر لتسجيل الدخول"
-  },
-  "authForm.username": {
-    "defaultMessage": "اسم المستخدم"
-  },
-  "footer.copyright": {
-    "defaultMessage": "© 2024 ForumSmallApp. جميع الحقوق محفوظة."
-  },
-  "footer.language.english": {
-    "defaultMessage": "الإنجليزية"
-  },
-  "footer.language.serbian": {
-    "defaultMessage": "الصربية"
-  },
-  "footer.language.french": {
-    "defaultMessage": "الفرنسية"
-  },
-  "footer.language.arabic": {
-    "defaultMessage": "العربية"
-  }
-  // ... add all other translations
-} 
+    "authForm.header": {
+        "defaultMessage": "{isSignInMode, select, true {تسجيل الدخول إلى حسابك} other {إنشاء حساب}}"
+    },
+    "authForm.password": {
+        "defaultMessage": "كلمة المرور"
+    },
+    "authForm.registerButton": {
+        "defaultMessage": "تسجيل"
+    },
+    "authForm.signInButton": {
+        "defaultMessage": "تسجيل الدخول"
+    },
+    "authForm.toggleRegister": {
+        "defaultMessage": "انقر للتسجيل"
+    },
+    "authForm.toggleSignIn": {
+        "defaultMessage": "انقر لتسجيل الدخول"
+    },
+    "authForm.username": {
+        "defaultMessage": "اسم المستخدم"
+    },
+    "footer.copyright": {
+        "defaultMessage": "© 2024 ForumSmallApp. جميع الحقوق محفوظة."
+    },
+    "footer.language.english": {
+        "defaultMessage": "الإنجليزية"
+    },
+    "footer.language.serbian": {
+        "defaultMessage": "الصربية"
+    },
+    "footer.language.french": {
+        "defaultMessage": "الفرنسية"
+    },
+    "footer.language.arabic": {
+        "defaultMessage": "العربية"
+    },
+    "comments.cancelEdit": {
+        "defaultMessage": "إلغاء التعديل"
+    },
+    "comments.comment": {
+        "defaultMessage": "تعليق"
+    },
+    "comments.delete": {
+        "defaultMessage": "حذف"
+    },
+    "comments.edit": {
+        "defaultMessage": "تعديل"
+    },
+    "comments.newComment": {
+        "defaultMessage": "تعليق جديد"
+    },
+    "comments.placeholderComment": {
+        "defaultMessage": "اكتب تعليقاً مثيراً للاهتمام"
+    },
+    "comments.postedBy": {
+        "defaultMessage": "نشر بواسطة {isCurrentUser, select, true {أنت} other {{userName}} } {when}"
+    },
+    "comments.submit": {
+        "defaultMessage": "إرسال"
+    },
+    "manageUsersPage.manageUsers": {
+        "defaultMessage": "إدارة المستخدمين"
+    },
+    "navbar.links.manageUsers": {
+        "defaultMessage": "إدارة المستخدمين"
+    },
+    "navbar.links.newPost": {
+        "defaultMessage": "منشور جديد"
+    },
+    "navbar.links.posts": {
+        "defaultMessage": "المنشورات"
+    },
+    "navbar.openMainMenu": {
+        "defaultMessage": "فتح القائمة الرئيسية"
+    },
+    "navbar.signOut": {
+        "defaultMessage": "تسجيل الخروج"
+    },
+    "notFoundPage.goTo": {
+        "defaultMessage": "الذهاب إلى {isAuthenticated, select, true {صفحة المنشورات} other {صفحة تسجيل الدخول}}"
+    },
+    "notFoundPage.notFound": {
+        "defaultMessage": "404 الصفحة غير موجودة..."
+    },
+    "post.categories.required": {
+        "defaultMessage": "الرجاء اختيار فئة واحدة على الأقل"
+    },
+    "post.text.minLength": {
+        "defaultMessage": "يجب أن يحتوي نص المنشور على 3 أحرف على الأقل"
+    },
+    "post.text.required": {
+        "defaultMessage": "نص المنشور مطلوب"
+    },
+    "post.title.minLength": {
+        "defaultMessage": "يجب أن يحتوي العنوان على 3 أحرف على الأقل"
+    },
+    "post.title.required": {
+        "defaultMessage": "العنوان مطلوب"
+    },
+    "posts.form.button.submit": {
+        "defaultMessage": "إرسال"
+    },
+    "posts.form.label.categories": {
+        "defaultMessage": "الفئات"
+    },
+    "posts.form.label.text": {
+        "defaultMessage": "نص المنشور"
+    },
+    "posts.form.label.title": {
+        "defaultMessage": "عنوان المنشور"
+    },
+    "posts.form.title.create": {
+        "defaultMessage": "إنشاء منشور جديد"
+    },
+    "posts.form.title.edit": {
+        "defaultMessage": "تعديل المنشور"
+    },
+    "posts.list.createPostPrompt": {
+        "defaultMessage": "اذهب إلى صفحة المنشور الجديد لإنشاء منشور"
+    },
+    "posts.list.filterByCategory": {
+        "defaultMessage": "تصفية حسب الفئة"
+    },
+    "posts.list.noPosts": {
+        "defaultMessage": "لا توجد منشورات"
+    },
+    "posts.modal.deleteTooltip": {
+        "defaultMessage": "حذف"
+    },
+    "posts.modal.editTooltip": {
+        "defaultMessage": "تعديل"
+    },
+    "posts.single.comments": {
+        "defaultMessage": "التعليقات: {count}"
+    },
+    "posts.single.downvoteTooltip": {
+        "defaultMessage": "تصويت سلبي"
+    },
+    "posts.single.openPostTooltip": {
+        "defaultMessage": "فتح المنشور"
+    },
+    "posts.single.postedBy": {
+        "defaultMessage": "نشر بواسطة"
+    },
+    "posts.single.upvoteTooltip": {
+        "defaultMessage": "تصويت إيجابي"
+    },
+    "posts.single.you": {
+        "defaultMessage": "أنت"
+    },
+    "postsPage.banned": {
+        "defaultMessage": "تم حظر حسابك"
+    },
+    "time.daysAgo": {
+        "defaultMessage": "منذ {days} أيام"
+    },
+    "time.hoursAgo": {
+        "defaultMessage": "منذ {hours} ساعات"
+    },
+    "time.minutesAgo": {
+        "defaultMessage": "منذ {minutes} دقائق"
+    },
+    "time.secondsAgo": {
+        "defaultMessage": "منذ {seconds} ثوان"
+    },
+    "users.list.action": {
+        "defaultMessage": "إجراء"
+    },
+    "users.list.role": {
+        "defaultMessage": "الدور"
+    },
+    "users.list.userName": {
+        "defaultMessage": "اسم المستخدم"
+    },
+    "users.single.banUser": {
+        "defaultMessage": "حظر المستخدم"
+    },
+    "users.single.demoteToRegular": {
+        "defaultMessage": "تخفيض إلى مستخدم عادي"
+    },
+    "users.single.promoteToAdmin": {
+        "defaultMessage": "ترقية إلى مشرف"
+    },
+    "users.single.unbanUser": {
+        "defaultMessage": "إلغاء حظر المستخدم"
+    }
+}

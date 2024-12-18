@@ -69,7 +69,7 @@ export async function loadMessages(language: SupportedLanguages) {
   }
 }
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguage] = React.useState<SupportedLanguages>(() => {
     const stored = storage.read();
     if (stored) return stored;

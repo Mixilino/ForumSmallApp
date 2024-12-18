@@ -181,5 +181,8 @@
   },
   "footer.language.french": {
     "defaultMessage": "Francuski"
+  },
+  "footer.language.arabic": {
+    "defaultMessage": "TODO: Arabic"
   }
 }

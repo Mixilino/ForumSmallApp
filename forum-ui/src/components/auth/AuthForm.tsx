@@ -65,7 +65,7 @@ export const AuthForm = () => {
               icon={RiLockPasswordLine}
             />
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 [&_.flex]:rtl:flex-row-reverse">
             <ToggleSwitch
               checked={isSignInMode}
               label={formatMessage(
