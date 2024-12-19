@@ -38,9 +38,9 @@ namespace ForumWebApi.services.PostCategoryService
 
         }
 
-        public ServiceResponse<List<PostCategoryReturnDto>> GetAll()
+        public async Task<ServiceResponse<List<PostCategoryReturnDto>>> GetAll()
         {
-            var categories = _unitOfWork.PostCategoryRepository.GetAll();
+            var categories = await _unitOfWork.PostCategoryRepository.GetAll();
 
             return new ServiceResponse<List<PostCategoryReturnDto>>
             {

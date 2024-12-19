@@ -31,9 +31,9 @@ namespace ForumWebApi.Data.PostCategoryRepo
             return pc.PcId;
         }
 
-        public List<PostCategory> GetAll()
+        public async Task<List<PostCategory>> GetAll()
         {
-            return _context.PostCategories.ToList();
+            return await _context.PostCategories.ToListAsync();
         }
 
         public PostCategory? Rename(PostCategoryReturnDto categoryDto)

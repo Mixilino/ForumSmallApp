@@ -772,20 +772,20 @@ public ActionResult&lt;ServiceResponse&lt;int?&gt;&gt; DeleteCategory(int id)</c
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Mixilino/ForumSmallApp/new/main/apiSpec/new?filename=ForumWebApi_Controllers_PostCategoriesController_GetAllCategories.md&amp;value=---%0Auid%3A%20ForumWebApi.Controllers.PostCategoriesController.GetAllCategories%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Mixilino/ForumSmallApp/new/main/apiSpec/new?filename=ForumWebApi_Controllers_PostCategoriesController_GetAllCategoriesAsync.md&amp;value=---%0Auid%3A%20ForumWebApi.Controllers.PostCategoriesController.GetAllCategoriesAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Mixilino/ForumSmallApp/blob/main/ForumWebApi/Controllers/PostCategoriesController.cs/#L50">View Source</a>
   </span>
-  <a id="ForumWebApi_Controllers_PostCategoriesController_GetAllCategories_" data-uid="ForumWebApi.Controllers.PostCategoriesController.GetAllCategories*"></a>
-  <h4 id="ForumWebApi_Controllers_PostCategoriesController_GetAllCategories" data-uid="ForumWebApi.Controllers.PostCategoriesController.GetAllCategories">GetAllCategories()</h4>
+  <a id="ForumWebApi_Controllers_PostCategoriesController_GetAllCategoriesAsync_" data-uid="ForumWebApi.Controllers.PostCategoriesController.GetAllCategoriesAsync*"></a>
+  <h4 id="ForumWebApi_Controllers_PostCategoriesController_GetAllCategoriesAsync" data-uid="ForumWebApi.Controllers.PostCategoriesController.GetAllCategoriesAsync">GetAllCategoriesAsync()</h4>
   <div class="markdown level1 summary"><p>Gets all post categories</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[HttpGet(&quot;all&quot;)]
-public ActionResult&lt;ServiceResponse&lt;PostCategoryReturnDto&gt;&gt; GetAllCategories()</code></pre>
+public async Task&lt;ActionResult&lt;ServiceResponse&lt;PostCategoryReturnDto&gt;&gt;&gt; GetAllCategoriesAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -797,7 +797,7 @@ public ActionResult&lt;ServiceResponse&lt;PostCategoryReturnDto&gt;&gt; GetAllCa
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Microsoft.AspNetCore.Mvc.ActionResult</span>&lt;<a class="xref" href="ForumWebApi.Models.ServiceResponse-1.html">ServiceResponse</a>&lt;<a class="xref" href="ForumWebApi.DataTransferObject.PostCategoryDto.PostCategoryReturnDto.html">PostCategoryReturnDto</a>&gt;&gt;</td>
+        <td><span class="xref">Task</span>&lt;<span class="xref">Microsoft.AspNetCore.Mvc.ActionResult</span>&lt;<a class="xref" href="ForumWebApi.Models.ServiceResponse-1.html">ServiceResponse</a>&lt;<a class="xref" href="ForumWebApi.DataTransferObject.PostCategoryDto.PostCategoryReturnDto.html">PostCategoryReturnDto</a>&gt;&gt;&gt;</td>
         <td><p>ServiceResponse containing all categories</p>
 </td>
       </tr>

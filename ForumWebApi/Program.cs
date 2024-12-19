@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using ForumWebApi.Data;
 using ForumWebApi.Data.AuthRepo;
 using ForumWebApi.Data.Interfaces;
@@ -13,7 +14,9 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Globalization;
 using System.Security.Claims;
-
+using FluentValidation;
+using ForumWebApi.Validators;
+using ForumWebApi.Data.PostCategoryRepo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +26,7 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -30,6 +34,8 @@ builder.Services.AddScoped<IPostCategoryService, PostCategoryService>();
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddScoped<IPostCategoryRepository, PostCategoryRepository>();
 
 builder.Services.AddDbContext<DataContext>();
 
@@ -60,6 +66,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false
         };
     });
+
+// Add FluentValidation
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddValidatorsFromAssemblyContaining<PostCreateDtoValidator>();
 
 var app = builder.Build();
 

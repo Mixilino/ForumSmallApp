@@ -161,19 +161,19 @@ references:
   isSpec: "True"
   fullName: ForumWebApi.Controllers.PostCategoriesController.DeleteCategory
   nameWithType: PostCategoriesController.DeleteCategory
-- uid: ForumWebApi.Controllers.PostCategoriesController.GetAllCategories
-  name: GetAllCategories()
-  href: api/ForumWebApi.Controllers.PostCategoriesController.html#ForumWebApi_Controllers_PostCategoriesController_GetAllCategories
-  commentId: M:ForumWebApi.Controllers.PostCategoriesController.GetAllCategories
-  fullName: ForumWebApi.Controllers.PostCategoriesController.GetAllCategories()
-  nameWithType: PostCategoriesController.GetAllCategories()
-- uid: ForumWebApi.Controllers.PostCategoriesController.GetAllCategories*
-  name: GetAllCategories
-  href: api/ForumWebApi.Controllers.PostCategoriesController.html#ForumWebApi_Controllers_PostCategoriesController_GetAllCategories_
-  commentId: Overload:ForumWebApi.Controllers.PostCategoriesController.GetAllCategories
+- uid: ForumWebApi.Controllers.PostCategoriesController.GetAllCategoriesAsync
+  name: GetAllCategoriesAsync()
+  href: api/ForumWebApi.Controllers.PostCategoriesController.html#ForumWebApi_Controllers_PostCategoriesController_GetAllCategoriesAsync
+  commentId: M:ForumWebApi.Controllers.PostCategoriesController.GetAllCategoriesAsync
+  fullName: ForumWebApi.Controllers.PostCategoriesController.GetAllCategoriesAsync()
+  nameWithType: PostCategoriesController.GetAllCategoriesAsync()
+- uid: ForumWebApi.Controllers.PostCategoriesController.GetAllCategoriesAsync*
+  name: GetAllCategoriesAsync
+  href: api/ForumWebApi.Controllers.PostCategoriesController.html#ForumWebApi_Controllers_PostCategoriesController_GetAllCategoriesAsync_
+  commentId: Overload:ForumWebApi.Controllers.PostCategoriesController.GetAllCategoriesAsync
   isSpec: "True"
-  fullName: ForumWebApi.Controllers.PostCategoriesController.GetAllCategories
-  nameWithType: PostCategoriesController.GetAllCategories
+  fullName: ForumWebApi.Controllers.PostCategoriesController.GetAllCategoriesAsync
+  nameWithType: PostCategoriesController.GetAllCategoriesAsync
 - uid: ForumWebApi.Controllers.PostCategoriesController.RenameCategory(ForumWebApi.DataTransferObject.PostCategoryDto.PostCategoryReturnDto)
   name: RenameCategory(PostCategoryReturnDto)
   href: api/ForumWebApi.Controllers.PostCategoriesController.html#ForumWebApi_Controllers_PostCategoriesController_RenameCategory_ForumWebApi_DataTransferObject_PostCategoryDto_PostCategoryReturnDto_
@@ -3558,6 +3558,31 @@ references:
   isSpec: "True"
   fullName: ForumWebApi.services.UserService.UserService.GetAll
   nameWithType: UserService.GetAll
+- uid: ForumWebApi.Validators
+  name: ForumWebApi.Validators
+  href: api/ForumWebApi.Validators.html
+  commentId: N:ForumWebApi.Validators
+  fullName: ForumWebApi.Validators
+  nameWithType: ForumWebApi.Validators
+- uid: ForumWebApi.Validators.PostCreateDtoValidator
+  name: PostCreateDtoValidator
+  href: api/ForumWebApi.Validators.PostCreateDtoValidator.html
+  commentId: T:ForumWebApi.Validators.PostCreateDtoValidator
+  fullName: ForumWebApi.Validators.PostCreateDtoValidator
+  nameWithType: PostCreateDtoValidator
+- uid: ForumWebApi.Validators.PostCreateDtoValidator.#ctor(ForumWebApi.Data.PostCategoryRepo.IPostCategoryRepository)
+  name: PostCreateDtoValidator(IPostCategoryRepository)
+  href: api/ForumWebApi.Validators.PostCreateDtoValidator.html#ForumWebApi_Validators_PostCreateDtoValidator__ctor_ForumWebApi_Data_PostCategoryRepo_IPostCategoryRepository_
+  commentId: M:ForumWebApi.Validators.PostCreateDtoValidator.#ctor(ForumWebApi.Data.PostCategoryRepo.IPostCategoryRepository)
+  fullName: ForumWebApi.Validators.PostCreateDtoValidator.PostCreateDtoValidator(ForumWebApi.Data.PostCategoryRepo.IPostCategoryRepository)
+  nameWithType: PostCreateDtoValidator.PostCreateDtoValidator(IPostCategoryRepository)
+- uid: ForumWebApi.Validators.PostCreateDtoValidator.#ctor*
+  name: PostCreateDtoValidator
+  href: api/ForumWebApi.Validators.PostCreateDtoValidator.html#ForumWebApi_Validators_PostCreateDtoValidator__ctor_
+  commentId: Overload:ForumWebApi.Validators.PostCreateDtoValidator.#ctor
+  isSpec: "True"
+  fullName: ForumWebApi.Validators.PostCreateDtoValidator.PostCreateDtoValidator
+  nameWithType: PostCreateDtoValidator.PostCreateDtoValidator
 - uid: ForumWebApi.WeatherForecast
   name: WeatherForecast
   href: api/ForumWebApi.WeatherForecast.html

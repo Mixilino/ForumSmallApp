@@ -48,9 +48,9 @@ namespace ForumWebApi.Controllers
         /// </summary>
         /// <returns>ServiceResponse containing all categories</returns>
         [HttpGet("all")]
-        public ActionResult<ServiceResponse<PostCategoryReturnDto>> GetAllCategories()
+        public async Task<ActionResult<ServiceResponse<PostCategoryReturnDto>>> GetAllCategoriesAsync()
         {
-            var response = postCategoryService.GetAll();
+            var response = await postCategoryService.GetAll();
             if (response.Succes)
             {
                 return Ok(response);
