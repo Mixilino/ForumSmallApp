@@ -17,6 +17,10 @@ using System.Security.Claims;
 using FluentValidation;
 using ForumWebApi.Validators;
 using ForumWebApi.Data.PostCategoryRepo;
+using Microsoft.AspNetCore.Localization;
+using ForumWebApi.Filters;
+using Microsoft.Extensions.Localization;
+using ForumWebApi.Resources;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,6 +55,8 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.ApiKey
     });
     c.OperationFilter<SecurityRequirementsOperationFilter>();
+    
+    c.OperationFilter<AddLanguageHeaderParameter>();
 });
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
@@ -67,10 +73,35 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// Add FluentValidation
+
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();
 builder.Services.AddValidatorsFromAssemblyContaining<PostCreateDtoValidator>();
+
+
+builder.Services.AddLocalization();
+
+
+builder.Services.AddControllers()
+    .AddDataAnnotationsLocalization(options =>
+    {
+        options.DataAnnotationLocalizerProvider = (type, factory) =>
+            factory.Create(typeof(ValidationMessages));
+    });
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+        new CultureInfo("en"),
+        new CultureInfo("sr"),
+        new CultureInfo("fr")
+    };
+
+    options.DefaultRequestCulture = new RequestCulture("en");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
 
 var app = builder.Build();
 
@@ -83,6 +114,39 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseRequestLocalization();
+
+app.Use(async (context, next) =>
+{
+    var languages = context.Request.Headers["Accept-Language"].ToString();
+    if (!string.IsNullOrEmpty(languages))
+    {
+        // Parse the first language from Accept-Language header
+        var primaryLanguage = languages.Split(',')
+            .FirstOrDefault()
+            ?.Split(';')
+            .FirstOrDefault()
+            ?.Trim();
+
+        if (!string.IsNullOrEmpty(primaryLanguage))
+        {
+            try
+            {
+                var culture = new CultureInfo(primaryLanguage);
+                Thread.CurrentThread.CurrentCulture = culture;
+                Thread.CurrentThread.CurrentUICulture = culture;
+            }
+            catch (CultureNotFoundException)
+            {
+                // If culture is not found, fall back to default (en)
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en");
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+            }
+        }
+    }
+    await next();
+});
 
 app.UseAuthentication(); // mora ovde pre authorization logicno
 

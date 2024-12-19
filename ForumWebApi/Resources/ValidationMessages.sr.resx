@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="TitleRequired" xml:space="preserve">
+    <value>Naslov je obavezan</value>
+  </data>
+  <data name="TitleLength" xml:space="preserve">
+    <value>Naslov mora biti između {0} i {1} karaktera</value>
+  </data>
+  <data name="ContentRequired" xml:space="preserve">
+    <value>Sadržaj je obavezan</value>
+  </data>
+  <data name="ContentLength" xml:space="preserve">
+    <value>Sadržaj mora biti između {0} i {1} karaktera</value>
+  </data>
+  <data name="CategoryRequired" xml:space="preserve">
+    <value>Mora biti izabrana bar jedna kategorija</value>
+  </data>
+  <data name="CategoryInvalid" xml:space="preserve">
+    <value>Jedna ili više izabranih kategorija ne postoje</value>
+  </data>
+</root> 

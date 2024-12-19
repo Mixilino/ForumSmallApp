@@ -38,4 +38,25 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Resources\ValidationMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ValidationMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\ValidationMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValidationMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ValidationMessages.fr.resx">
+      <DependentUpon>ValidationMessages.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ValidationMessages.sr.resx">
+      <DependentUpon>ValidationMessages.resx</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

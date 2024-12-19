@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="TitleRequired" xml:space="preserve">
+    <value>Le titre est requis</value>
+  </data>
+  <data name="TitleLength" xml:space="preserve">
+    <value>Le titre doit contenir entre {0} et {1} caractères</value>
+  </data>
+  <data name="ContentRequired" xml:space="preserve">
+    <value>Le contenu est requis</value>
+  </data>
+  <data name="ContentLength" xml:space="preserve">
+    <value>Le contenu doit contenir entre {0} et {1} caractères</value>
+  </data>
+  <data name="CategoryRequired" xml:space="preserve">
+    <value>Au moins une catégorie doit être sélectionnée</value>
+  </data>
+  <data name="CategoryInvalid" xml:space="preserve">
+    <value>Une ou plusieurs catégories sélectionnées n'existent pas</value>
+  </data>
+</root> 
