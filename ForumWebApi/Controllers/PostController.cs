@@ -29,9 +29,11 @@ namespace ForumWebApi.Controllers
         }
 
         /// <summary>
-        /// Gets all posts
+        /// Gets all posts with pagination
         /// </summary>
-        /// <returns>ServiceResponse containing all posts or error in case of failure.</returns>
+        /// <param name="cursor">ID of the first post to fetch from (exclusive). Null means start from beginning.</param>
+        /// <param name="pageSize">Number of posts to fetch per page. Defaults to 10.</param>
+        /// <returns>ServiceResponse containing paginated posts, total count, and next cursor.</returns>
         [HttpGet("all")]
         public ActionResult<ServiceResponse<List<PostResponseDto>>> GetAll()
         {
@@ -39,13 +41,37 @@ namespace ForumWebApi.Controllers
             var userId = HttpContext.Items["UserId"];
             if (userName == null || userId == null)
             {
-                return BadRequest(new ServiceResponse<PostResponseDto> { Data = null, Message = "Invalid data", Succes = false });
+                return BadRequest(new ServiceResponse<List<PostResponseDto>> { Data = null, Message = "Invalid data", Succes = false });
             }
             UserResponseDto user = new UserResponseDto { UserId = (int)userId, UserName = (string)userName };
             var p = postService.GetAll(user);
             if (p.Succes)
             {
-                return Created("Succes", p);
+                return Ok(p);
+            }
+            return BadRequest(p);
+        }
+
+        /// <summary>
+        /// Gets all posts with pagination
+        /// </summary>
+        /// <param name="cursor">ID of the first post to fetch from (exclusive). Null means start from beginning.</param>
+        /// <param name="pageSize">Number of posts to fetch per page. Defaults to 10.</param>
+        /// <returns>ServiceResponse containing paginated posts, total count, and next cursor.</returns>
+        [HttpGet("paginated")]
+        public ActionResult<ServiceResponse<PostPaginatedResponseDto>> GetAllPaginated([FromQuery] int? cursor = null, [FromQuery] int pageSize = 10)
+        {
+            var userName = HttpContext.Items["UserName"];
+            var userId = HttpContext.Items["UserId"];
+            if (userName == null || userId == null)
+            {
+                return BadRequest(new ServiceResponse<PostPaginatedResponseDto> { Data = null, Message = "Invalid data", Succes = false });
+            }
+            UserResponseDto user = new UserResponseDto { UserId = (int)userId, UserName = (string)userName };
+            var p = postService.GetAllPaginated(user, cursor, pageSize);
+            if (p.Succes)
+            {
+                return Ok(p);
             }
             return BadRequest(p);
         }
@@ -147,13 +173,14 @@ namespace ForumWebApi.Controllers
         }
 
         /// <summary>
-        /// Changes state of post. Only admin can access this endpoint.
+        /// Flags a post as inappropriate content. Only admin can access this endpoint.
         /// </summary>
-        /// <param name="id">Post data with updated state</param>
-        /// <returns>ServiceResponse indicating success or failure</returns>
+        /// <param name="postId">The ID of the post to flag</param>
+        /// <param name="flag">True to flag the post, false to unflag</param>
+        /// <returns>ServiceResponse containing the updated post</returns>
         [Authorize(Roles = "Admin")]
-        [HttpPatch("state")]
-        public ActionResult<ServiceResponse<PostResponseDto>> ChangeState(PostChangeStateDto postChangeStateDto)
+        [HttpPatch("flag")]
+        public ActionResult<ServiceResponse<PostResponseDto>> FlagContent([FromQuery] int postId, [FromQuery] bool flag)
         {
             var userName = HttpContext.Items["UserName"];
             var userId = HttpContext.Items["UserId"];
@@ -162,11 +189,10 @@ namespace ForumWebApi.Controllers
                 return BadRequest(new ServiceResponse<PostResponseDto> { Data = null, Message = "Invalid data", Succes = false });
             }
             UserResponseDto user = new UserResponseDto { UserId = (int)userId, UserName = (string)userName };
-            Console.WriteLine(user);
-            var p = postService.ChangeState(postChangeStateDto.PostId, postChangeStateDto.PostState, user);
+            var p = postService.FlagContent(postId, flag, user);
             if (p.Succes)
             {
-                return Created("Succes", p);
+                return Ok(p);
             }
             return BadRequest(p);
         }

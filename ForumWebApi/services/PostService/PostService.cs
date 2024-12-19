@@ -22,38 +22,115 @@ namespace ForumWebApi.services.PostService
 
         public ServiceResponse<List<PostResponseDto>> GetAll(UserResponseDto userDto)
         {
-            var posts = _unitOfWork.PostRepository.GetAll();
             var user = _unitOfWork.UserRepository.GetById(userDto.UserId);
             var isAdmin = user?.role == UserRoles.Admin;
+
+            // Get base query
+            var query = _unitOfWork.PostRepository.GetAll()
+                .Where(p => isAdmin || p.ContentFlag == ContentFlagEnum.Normal || p.UserId == userDto.UserId);
+
+            var posts = query.OrderBy(p => p.PostId).ToList();
+
+            // Map to DTOs
+            var postDtos = posts.Select(post => new PostResponseDto
+            {
+                User = new UserResponseDto { UserName = post.User.UserName, UserId = post.User.UserId },
+                Comments = post.Comments.Select(c => new CommentResponseDto
+                {
+                    CommentId = c.CommentId,
+                    CommentText = c.CommentText,
+                    DateCreated = c.DateCreated,
+                    PostId = c.PostId,
+                    UserId = c.UserId,
+                    User = new UserResponseDto { UserId = c.UserId, UserName = c.User.UserName }
+                }).ToList(),
+                PostTitle = post.PostTitle,
+                PostText = post.PostText,
+                PostCategories = post.PostCategories.Select(pc => new PostCategoryReturnDto { PcId = pc.PcId, CategoryName = pc.CategoryName }).ToList(),
+                DatePosted = post.DatePosted,
+                Voted = post.Votes.Any(v => v.User.UserId == userDto.UserId),
+                Upvote = post.Votes.Any(v => v.User.UserId == userDto.UserId) ?
+                    post.Votes.First(v => v.User.UserId == userDto.UserId).UpVote : false,
+                VotesCount = post.Votes.Count(v => v.UpVote) - post.Votes.Count(v => !v.UpVote),
+                PostId = post.PostId,
+                ContentFlag = post.ContentFlag
+            }).ToList();
+
             return new ServiceResponse<List<PostResponseDto>>
             {
-                Data = posts
-                .Where(p => isAdmin || p.PostState == PostStateEnum.Verified || p.UserId == userDto.UserId)
-                .Select(post => new PostResponseDto
+                Data = postDtos,
+                Message = "Success",
+                Succes = true
+            };
+        }
+
+        public ServiceResponse<PostPaginatedResponseDto> GetAllPaginated(UserResponseDto userDto, int? cursor = null, int pageSize = 10)
+        {
+            var user = _unitOfWork.UserRepository.GetById(userDto.UserId);
+            var isAdmin = user?.role == UserRoles.Admin;
+
+            // Get base query
+            var query = _unitOfWork.PostRepository.GetAll()
+                .Where(p => isAdmin || p.ContentFlag == ContentFlagEnum.Normal || p.UserId == userDto.UserId);
+
+            // Get total count
+            var totalPosts = query.Count();
+
+            // Apply cursor pagination
+            if (cursor.HasValue)
+            {
+                query = query.Where(p => p.PostId > cursor.Value);
+            }
+
+            // Get one extra post to determine if there's a next page
+            var posts = query
+                .OrderBy(p => p.PostId)
+                .Take(pageSize + 1)
+                .ToList();
+
+            // Determine next cursor
+            int? nextCursor = null;
+            if (posts.Count > pageSize)
+            {
+                nextCursor = posts[pageSize - 1].PostId;
+                posts = posts.Take(pageSize).ToList();
+            }
+
+            // Map to DTOs
+            var postDtos = posts.Select(post => new PostResponseDto
+            {
+                User = new UserResponseDto { UserName = post.User.UserName, UserId = post.User.UserId },
+                Comments = post.Comments.Select(c => new CommentResponseDto
                 {
-                    User = new UserResponseDto { UserName = post.User.UserName, UserId = post.User.UserId },
-                    Comments = post.Comments.Select(c => new CommentResponseDto
-                    {
-                        CommentId = c.CommentId,
-                        CommentText = c.CommentText,
-                        DateCreated = c.DateCreated,
-                        PostId = c.PostId,
-                        UserId = c.UserId,
-                        User = new UserResponseDto { UserId = c.UserId, UserName = c.User.UserName }
-                    }).ToList(),
-                    PostTitle = post.PostTitle,
-                    PostText = post.PostText,
-                    PostCategories = post.PostCategories.Select(pc => new PostCategoryReturnDto { PcId = pc.PcId, CategoryName = pc.CategoryName }).ToList(),
-                    DatePosted = post.DatePosted,
-                    Voted = post.Votes.Any(v => v.User.UserId == userDto.UserId),
-                    Upvote = post.Votes.Any(v => v.User.UserId == userDto.UserId) ?
-                                post.Votes.Find(v => v.User.UserId == userDto.UserId).UpVote : false,
-                    PostId = post.PostId,
-                    PostState = post.PostState,
-                    VotesCount = post.Votes.Count(v => v.UpVote) - post.Votes.Count(v => !v.UpVote)
+                    CommentId = c.CommentId,
+                    CommentText = c.CommentText,
+                    DateCreated = c.DateCreated,
+                    PostId = c.PostId,
+                    UserId = c.UserId,
+                    User = new UserResponseDto { UserId = c.UserId, UserName = c.User.UserName }
                 }).ToList(),
-                Succes = true,
-                Message = "Success"
+                PostTitle = post.PostTitle,
+                PostText = post.PostText,
+                PostCategories = post.PostCategories.Select(pc => new PostCategoryReturnDto { PcId = pc.PcId, CategoryName = pc.CategoryName }).ToList(),
+                DatePosted = post.DatePosted,
+                Voted = post.Votes.Any(v => v.User.UserId == userDto.UserId),
+                Upvote = post.Votes.Any(v => v.User.UserId == userDto.UserId) ?
+                    post.Votes.First(v => v.User.UserId == userDto.UserId).UpVote : false,
+                VotesCount = post.Votes.Count(v => v.UpVote) - post.Votes.Count(v => !v.UpVote),
+                PostId = post.PostId,
+                ContentFlag = post.ContentFlag
+            }).ToList();
+
+            return new ServiceResponse<PostPaginatedResponseDto>
+            {
+                Data = new PostPaginatedResponseDto
+                {
+                    Posts = postDtos,
+                    TotalPosts = totalPosts,
+                    NextCursor = nextCursor
+                },
+                Message = "Success",
+                Succes = true
             };
         }
 
@@ -80,18 +157,18 @@ namespace ForumWebApi.services.PostService
                     DatePosted = post.DatePosted,
                     Voted = false,
                     Upvote = false,
-                    PostState = isAdmin ? PostStateEnum.Verified : PostStateEnum.In_Verification,
                     PostId = post.PostId,
-                    VotesCount = 0
+                    VotesCount = 0,
+                    ContentFlag = ContentFlagEnum.Normal
                 };
                 response.Succes = true;
                 response.Message = "Post created succesfully";
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 response.Data = null;
                 response.Succes = false;
-                response.Message = "Error when creating post.";
+                response.Message = "Error when creating post." + e.Message;
 
             }
             return response;
@@ -140,9 +217,9 @@ namespace ForumWebApi.services.PostService
                     DatePosted = post.DatePosted,
                     Voted = voted,
                     Upvote = voted ? post.Votes.Find(v => v.User.UserId == userDto.UserId).UpVote : false,
-                    PostState = post.PostState,
                     PostId = post.PostId,
-                    VotesCount = post.Votes.Count(v => v.UpVote) - post.Votes.Count(v => !v.UpVote)
+                    VotesCount = post.Votes.Count(v => v.UpVote) - post.Votes.Count(v => !v.UpVote),
+                    ContentFlag = post.ContentFlag
                 };
                 response.Succes = true;
                 response.Message = "Post updated succesfully";
@@ -222,11 +299,11 @@ namespace ForumWebApi.services.PostService
                     PostText = post.PostText,
                     PostCategories = post.PostCategories.Select(pc => new PostCategoryReturnDto { PcId = pc.PcId, CategoryName = pc.CategoryName }).ToList(),
                     DatePosted = post.DatePosted,
-                    PostState = post.PostState,
                     Voted = voted,
                     Upvote = voted ? post.Votes.Find(v => v.User.UserId == userDto.UserId).UpVote : false,
                     PostId = post.PostId,
-                    VotesCount = post.Votes.Count(v => v.UpVote) - post.Votes.Count(v => !v.UpVote)
+                    VotesCount = post.Votes.Count(v => v.UpVote) - post.Votes.Count(v => !v.UpVote),
+                    ContentFlag = post.ContentFlag
                 };
                 response.Succes = true;
                 response.Message = "Post updated succesfully";
@@ -241,24 +318,27 @@ namespace ForumWebApi.services.PostService
             return response;
         }
 
-        public ServiceResponse<PostResponseDto> ChangeState(int PostId, PostStateEnum NewState, UserResponseDto userDto)
+        public ServiceResponse<PostResponseDto> FlagContent(int PostId, bool flag, UserResponseDto userDto)
         {
-            Post? post = _unitOfWork.PostRepository.ChangeState(PostId, NewState);
-
-            ServiceResponse<PostResponseDto> response = new ServiceResponse<PostResponseDto>();
+            var post = _unitOfWork.PostRepository.GetById(PostId);
+            
             if (post == null)
             {
-
-                response.Data = null;
-                response.Succes = false;
-                response.Message = "Post does not exist.";
-                return response;
+                return new ServiceResponse<PostResponseDto>
+                {
+                    Data = null,
+                    Succes = false,
+                    Message = "Post does not exist."
+                };
             }
+
             try
             {
+                post.ContentFlag = flag ? ContentFlagEnum.Flagged : ContentFlagEnum.Normal;
                 _unitOfWork.Save();
+
                 bool voted = post.Votes.Any(v => v.User.UserId == userDto.UserId);
-                response.Data = new PostResponseDto
+                var response = new PostResponseDto
                 {
                     User = new UserResponseDto { UserName = post.User.UserName, UserId = post.User.UserId },
                     Comments = post.Comments.Select(c => new CommentResponseDto
@@ -276,21 +356,27 @@ namespace ForumWebApi.services.PostService
                     DatePosted = post.DatePosted,
                     Voted = voted,
                     Upvote = voted ? post.Votes.Find(v => v.User.UserId == userDto.UserId).UpVote : false,
-                    PostState = post.PostState,
                     PostId = post.PostId,
+                    ContentFlag = post.ContentFlag,
                     VotesCount = post.Votes.Count(v => v.UpVote) - post.Votes.Count(v => !v.UpVote)
                 };
-                response.Succes = true;
-                response.Message = "Post updated succesfully";
+
+                return new ServiceResponse<PostResponseDto>
+                {
+                    Data = response,
+                    Succes = true,
+                    Message = flag ? "Post has been flagged" : "Post flag has been removed"
+                };
             }
             catch (Exception)
             {
-                response.Data = null;
-                response.Succes = false;
-                response.Message = "Post failed to update.";
-
+                return new ServiceResponse<PostResponseDto>
+                {
+                    Data = null,
+                    Succes = false,
+                    Message = "Failed to update post flag status"
+                };
             }
-            return response;
         }
     }
 }

@@ -31,7 +31,7 @@ namespace ForumWebApi.Data.PostRepo
                 DatePosted = DateTime.Now,
                 PostCategories = _context.PostCategories.Where(pc => postDto.PostCategoryIds.Contains(pc.PcId)).ToList(),
                 PostText = postDto.PostText,
-                PostState = u.role == UserRoles.Admin ? PostStateEnum.Verified : PostStateEnum.In_Verification,
+                ContentFlag = ContentFlagEnum.Normal,
                 User = u,
             };
             _context.Posts.Add(post);
@@ -55,24 +55,6 @@ namespace ForumWebApi.Data.PostRepo
             post.PostCategories = _context.PostCategories.Where(pc => postDto.PostCategoryIds.Contains(pc.PcId)).ToList();
             post.PostText = postDto.PostText;
             post.PostTitle = postDto.PostTitle;
-            return post;
-        }
-
-        public Post? ChangeState(int PostId, PostStateEnum newState)
-        {
-            Post post = _context.Posts.Include(p => p.User)
-                                     .Include(p => p.Votes)
-                                     .ThenInclude(v => v.User)
-                                     .Include(p => p.Comments)
-                                     .ThenInclude(c => c.User)
-                                     .Include(p => p.PostCategories)
-                                     .SingleOrDefault(p => p.PostId == PostId);
-            Console.WriteLine(post);
-            if (post == null)
-            {
-                return null;
-            }
-            post.PostState = newState;
             return post;
         }
 
@@ -136,6 +118,18 @@ namespace ForumWebApi.Data.PostRepo
                 
             }
             return post;
+        }
+
+        public Post? GetById(int postId)
+        {
+            return _context.Posts
+                .Include(p => p.User)
+                .Include(p => p.Votes)
+                .ThenInclude(v => v.User)
+                .Include(p => p.Comments)
+                .ThenInclude(c => c.User)
+                .Include(p => p.PostCategories)
+                .SingleOrDefault(p => p.PostId == postId);
         }
     }
 }

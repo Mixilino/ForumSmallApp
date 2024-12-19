@@ -40,7 +40,6 @@ namespace ForumWebApi.ServiceTest
                     UserId= 1,
                     PostTitle = "Test Post 1",
                     PostText = "Lorem ipsum dolor sit amet",
-                    PostState = PostStateEnum.Verified,
                     User = new User { UserName = "User1", UserId = 1, role= UserRoles.Admin },
                     PostCategories = postCategoryList,
                     Comments = commentList,
@@ -51,14 +50,12 @@ namespace ForumWebApi.ServiceTest
                     PostTitle = "Test Post 2",
                     PostText = "Post text 2",
                     User = new User { UserName = "User2", UserId = 2, role= UserRoles.Regular },
-                    PostState = PostStateEnum.In_Verification,
                     UserId = 2,
                 },
                 new Post {
                 PostTitle = "Test Post 3",
                 PostText = "Post text 3",
                     User = new User { UserName = "User3", UserId = 3, role= UserRoles.Banned },
-                PostState = PostStateEnum.Not_Verified,
                 UserId = 3
             }
             };
@@ -77,7 +74,6 @@ namespace ForumWebApi.ServiceTest
             var postResponseDto = response.Data.First();
             Assert.AreEqual("Test Post 1", postResponseDto.PostTitle);
             Assert.AreEqual("Lorem ipsum dolor sit amet", postResponseDto.PostText);
-            Assert.AreEqual(PostStateEnum.Verified, postResponseDto.PostState);
             Assert.AreEqual("User1", postResponseDto.User.UserName);
             Assert.AreEqual(1, postResponseDto.User.UserId);
             Assert.AreEqual(1, postResponseDto.Comments.Count);

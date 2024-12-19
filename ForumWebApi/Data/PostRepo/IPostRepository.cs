@@ -17,6 +17,6 @@ namespace ForumWebApi.Data.PostRepo
 
         public List<Post> GetAll();
 
-        public Post? ChangeState(int PostId, PostStateEnum newState);
+        public Post? GetById(int postId);
     }
 }

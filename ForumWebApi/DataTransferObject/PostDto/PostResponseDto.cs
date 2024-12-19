@@ -12,8 +12,6 @@ namespace ForumWebApi.DataTransferObject.PostDto
         public string PostText { get; set; } = string.Empty;
         public DateTime DatePosted { get; set; }
 
-        public PostStateEnum PostState { get; set; }
-
         public UserResponseDto User { get; set; }
 
         public List<PostCategoryReturnDto> PostCategories { get; set; }
@@ -23,5 +21,7 @@ namespace ForumWebApi.DataTransferObject.PostDto
         public bool Upvote { get; set; }
 
         public List<CommentResponseDto> Comments { get; set; }
+
+        public ContentFlagEnum ContentFlag { get; set; }
     }
 }

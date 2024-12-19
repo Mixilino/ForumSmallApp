@@ -42,11 +42,6 @@ namespace ForumWebApi.Models
         public User User { get; set; }
 
         /// <summary>
-        /// Gets or sets the state of the post (3 possible values, verified, not verified, in verification).
-        /// </summary>
-        public PostStateEnum PostState { get; set; }
-
-        /// <summary>
         /// Gets or sets the list of Categories that the post belongs to.
         /// </summary>
         public List<PostCategory> PostCategories { get; set; } = new List<PostCategory>();
@@ -61,6 +56,11 @@ namespace ForumWebApi.Models
         /// </summary>
         public List<Comment> Comments { get; set; } = new List<Comment>();
 
+        /// <summary>
+        /// Gets or sets the content flag status of the post. 
+        /// Normal posts are visible to all, Flagged posts are only visible to admins
+        /// </summary>
+        public ContentFlagEnum ContentFlag { get; set; } = ContentFlagEnum.Normal;
 
         /// <summary>
         /// Returns a string representation of the post.
@@ -69,15 +69,5 @@ namespace ForumWebApi.Models
         {
             return $"{PostId} {PostText} {DatePosted} {UserId}";
         }
-    }
-
-    /// <summary>
-    /// Represents the possible states that a post can be in.
-    /// </summary>
-    public enum PostStateEnum
-    {
-        In_Verification = 0,
-        Verified = 1,
-        Not_Verified = 2,
     }
 }

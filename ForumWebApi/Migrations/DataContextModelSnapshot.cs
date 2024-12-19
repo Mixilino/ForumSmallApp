@@ -60,11 +60,11 @@ namespace ForumWebApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PostId"), 1L, 1);
 
+                    b.Property<int>("ContentFlag")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("PostState")
-                        .HasColumnType("int");
 
                     b.Property<string>("PostText")
                         .IsRequired()
