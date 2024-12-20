@@ -77,6 +77,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();
 builder.Services.AddValidatorsFromAssemblyContaining<PostCreateDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<PostUpdateDtoValidator>();
 
 
 builder.Services.AddLocalization();

@@ -6,7 +6,7 @@ using ForumWebApi.Resources;
 
 namespace ForumWebApi.Validators
 {
-    public class PostUpdateDtoValidator : AbstractValidator<PostUpdateDto>
+    public class PostUpdateDtoValidator : AbstractValidator<PostChangeDto>
     {
         private const int POST_TITLE_MIN_LENGTH = 3;
         private const int POST_TITLE_MAX_LENGTH = 50;
