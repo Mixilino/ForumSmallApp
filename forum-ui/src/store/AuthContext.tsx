@@ -52,6 +52,9 @@ function AuthContextProvider({ children }: AuthContextProviderProps) {
   const signOut = async () => {
     setAuthToken(null);
     localStorage.removeItem("token");
+    setUserId(null);
+    setUserName(null);
+    setRole(null);
   };
 
   useEffect(() => {

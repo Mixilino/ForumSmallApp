@@ -16,7 +16,7 @@ export const AuthPage = () => {
   }, [authCtx.isAuthenticated, navigate]);
 
   return (
-    <Layout>
+    <Layout hideSignInButton >
       <div className="h-screen w-screen flex justify-center items-center">
         <AuthForm />
       </div>

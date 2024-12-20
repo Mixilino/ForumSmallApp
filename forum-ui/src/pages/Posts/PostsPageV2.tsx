@@ -1,6 +1,6 @@
 import { Spinner } from "flowbite-react";
 import { useContext, useEffect, useState } from "react";
-import { useGetAllPostsPaginated } from "../../hooks/posts/useGetAllPostsPaginated";
+import { useGetAllPostsPaginatedV2 } from "../../hooks/posts/useGetAllPostsPaginatedV2";
 import { PostsListV2 } from "../../components/posts/PostsListV2";
 import { useGetAllCategories } from "../../hooks/categories/useGetCategories";
 import { PostCategory } from "../../model/PostCategories";
@@ -12,9 +12,19 @@ import Layout from "../../components/Layout/Layout";
 import { PostResponse } from "../../model/PostResponse";
 
 export const PostsPageV2 = () => {
-  const [cursor, setCursor] = useState(0);
-  const [allPosts, setAllPosts] = useState<PostResponse[]>([]);
-  const { posts, totalPosts, nextCursor, isLoading } = useGetAllPostsPaginated(cursor);
+  const [selectedCategories, setSelectedCategories] = useState<PostCategory[]>([]);
+  const [searchText, setSearchText] = useState("");
+  const { 
+    posts, 
+    totalPosts, 
+    isLoading,
+    isFetching,
+    hasNextPage,
+    fetchNextPage 
+  } = useGetAllPostsPaginatedV2(
+    selectedCategories.map(c => c.pcId),
+    searchText
+  );
   const { postCategories } = useGetAllCategories();
   const [categories, setCategories] = useState<PostCategory[]>([]);
   const authCtx = useContext(AuthContext);
@@ -24,19 +34,21 @@ export const PostsPageV2 = () => {
     setCategories(postCategories?.data ?? []);
   }, [postCategories?.data]);
 
-  useEffect(() => {
-    if (posts.length > 0) {
-      setAllPosts(prev => [...prev, ...posts]);
-    }
-  }, [posts]);
-
   const loadMore = () => {
-    setCursor(nextCursor);
+    if (!isFetching && hasNextPage) {
+      fetchNextPage();
+    }
   };
 
-  const hasMore = allPosts.length < totalPosts;
+  const handleCategoryChange = (categories: PostCategory[]) => {
+    setSelectedCategories(categories);
+  };
 
-  if (isLoading && allPosts.length === 0) {
+  const handleSearchChange = (search: string) => {
+    setSearchText(search);
+  };
+
+  if (isLoading && posts.length === 0) {
     return (
       <Layout>
         <div className="flex justify-center w-screen h-screen items-center">
@@ -53,12 +65,15 @@ export const PostsPageV2 = () => {
           {formatMessage(messages.banned)}
         </h5>
       )}
-      <PostsListV2 
-        posts={allPosts} 
-        categories={categories} 
-        hasMore={hasMore}
+      <PostsListV2
+        posts={posts}
+        categories={categories}
+        hasMore={!!hasNextPage}
         loadMore={loadMore}
         totalPosts={totalPosts}
+        onCategoryChange={handleCategoryChange}
+        onSearchChange={handleSearchChange}
+        searchText={searchText}
       />
     </Layout>
   );

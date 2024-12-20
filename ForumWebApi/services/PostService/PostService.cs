@@ -377,5 +377,91 @@ namespace ForumWebApi.services.PostService
                 };
             }
         }
+
+        public ServiceResponse<PostPaginatedResponseDto> GetAllPaginatedWithFilters(UserResponseDto userDto, PostFilterDto filter)
+        {
+            var user = _unitOfWork.UserRepository.GetById(userDto.UserId);
+            var isAdmin = user?.role == UserRoles.Admin;
+
+            // Get base query
+            var query = _unitOfWork.PostRepository.GetAll()
+                .Where(p => isAdmin || p.ContentFlag == ContentFlagEnum.Normal || p.UserId == userDto.UserId);
+
+            // Apply search filter
+            if (!string.IsNullOrWhiteSpace(filter.SearchText))
+            {
+                var searchText = filter.SearchText.ToLower();
+                query = query.Where(p => 
+                    p.PostTitle.ToLower().Contains(searchText) || 
+                    p.PostText.ToLower().Contains(searchText));
+            }
+
+            // Apply category filter
+            if (filter.CategoryIds != null && filter.CategoryIds.Any())
+            {
+                query = query.Where(p => p.PostCategories
+                    .Any(pc => filter.CategoryIds.Contains(pc.PcId)));
+            }
+
+            // Get total count
+            var totalPosts = query.Count();
+
+            // Apply cursor pagination
+            if (filter.Cursor.HasValue)
+            {
+                query = query.Where(p => p.PostId > filter.Cursor.Value);
+            }
+
+            // Get one extra post to determine if there's a next page
+            var posts = query
+                .OrderBy(p => p.PostId)
+                .Take(filter.PageSize + 1)
+                .ToList();
+
+            // Determine next cursor
+            int? nextCursor = null;
+            if (posts.Count > filter.PageSize)
+            {
+                nextCursor = posts[filter.PageSize - 1].PostId;
+                posts = posts.Take(filter.PageSize).ToList();
+            }
+
+            // Map to DTOs
+            var postDtos = posts.Select(post => new PostResponseDto
+            {
+                User = new UserResponseDto { UserName = post.User.UserName, UserId = post.User.UserId },
+                Comments = post.Comments.Select(c => new CommentResponseDto
+                {
+                    CommentId = c.CommentId,
+                    CommentText = c.CommentText,
+                    DateCreated = c.DateCreated,
+                    PostId = c.PostId,
+                    UserId = c.UserId,
+                    User = new UserResponseDto { UserId = c.UserId, UserName = c.User.UserName }
+                }).ToList(),
+                PostTitle = post.PostTitle,
+                PostText = post.PostText,
+                PostCategories = post.PostCategories.Select(pc => new PostCategoryReturnDto { PcId = pc.PcId, CategoryName = pc.CategoryName }).ToList(),
+                DatePosted = post.DatePosted,
+                Voted = post.Votes.Any(v => v.User.UserId == userDto.UserId),
+                Upvote = post.Votes.Any(v => v.User.UserId == userDto.UserId) ?
+                    post.Votes.First(v => v.User.UserId == userDto.UserId).UpVote : false,
+                VotesCount = post.Votes.Count(v => v.UpVote) - post.Votes.Count(v => !v.UpVote),
+                PostId = post.PostId,
+                ContentFlag = post.ContentFlag
+            }).ToList();
+
+            return new ServiceResponse<PostPaginatedResponseDto>
+            {
+                Data = new PostPaginatedResponseDto
+                {
+                    Posts = postDtos,
+                    TotalPosts = totalPosts,
+                    NextCursor = nextCursor
+                },
+                Message = "Success",
+                Succes = true
+            };
+        }
     }
 }

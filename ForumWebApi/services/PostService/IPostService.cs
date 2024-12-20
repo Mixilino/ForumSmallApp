@@ -13,5 +13,6 @@ namespace ForumWebApi.services.PostService
         public ServiceResponse<bool> Delete(int PostId, UserResponseDto userDto);
         public ServiceResponse<PostResponseDto> Vote(int PostId, bool vote, UserResponseDto userDto);
         public ServiceResponse<PostResponseDto> FlagContent(int PostId, bool flag, UserResponseDto userDto);
+        public ServiceResponse<PostPaginatedResponseDto> GetAllPaginatedWithFilters(UserResponseDto userDto, PostFilterDto filter);
     }
 }

@@ -186,6 +186,12 @@
     "defaultMessage": "إلغاء حظر المستخدم"
   },
   "posts.list.noMorePosts": {
-    "defaultMessage": "TODO: No more posts to load"
+    "defaultMessage": "لا يوجد المزيد من المنشورات للتحميل"
+  },
+  "navbar.links.signIn": {
+    "defaultMessage": "تسجيل الدخول"
+  },
+  "posts.list.searchPosts": {
+    "defaultMessage": "البحث في المنشورات..."
   }
 }

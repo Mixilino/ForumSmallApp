@@ -21,4 +21,8 @@ export const messages = defineMessages({
     id: 'navbar.links.manageUsers',
     defaultMessage: 'Manage users',
   },
+  signIn: {
+    id: 'navbar.links.signIn',
+    defaultMessage: 'Sign In',
+  },
 });

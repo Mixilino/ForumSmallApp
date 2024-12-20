@@ -190,5 +190,25 @@ namespace ForumWebApi.Controllers
             }
             return BadRequest(p);
         }
+
+        /// <summary>
+        /// Gets all posts with pagination and filtering
+        /// </summary>
+        /// <param name="filter">Filter parameters including search text, categories, cursor and page size</param>
+        /// <returns>ServiceResponse containing filtered paginated posts, total count, and next cursor</returns>
+        [HttpGet("paginated-v2")]
+        [AllowAnonymous]
+        public ActionResult<ServiceResponse<PostPaginatedResponseDto>> GetAllPaginatedWithFilters([FromQuery] PostFilterDto filter)
+        {
+            var userName = HttpContext.Items["UserName"] as string ?? "";
+            var userId = HttpContext.Items["UserId"] as int? ?? -1;
+            UserResponseDto user = new() { UserId = userId, UserName = userName };
+            var response = postService.GetAllPaginatedWithFilters(user, filter);
+            if (response.Succes)
+            {
+                return Ok(response);
+            }
+            return BadRequest(response);
+        }
     }
 }

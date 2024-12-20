@@ -186,6 +186,12 @@
     "defaultMessage": "Arabe"
   },
   "posts.list.noMorePosts": {
-    "defaultMessage": "TODO: No more posts to load"
+    "defaultMessage": "Plus de publications à charger"
+  },
+  "navbar.links.signIn": {
+    "defaultMessage": "Se connecter"
+  },
+  "posts.list.searchPosts": {
+    "defaultMessage": "Rechercher des publications..."
   }
 }

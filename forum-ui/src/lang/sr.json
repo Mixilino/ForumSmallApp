@@ -186,6 +186,12 @@
     "defaultMessage": "Arapski"
   },
   "posts.list.noMorePosts": {
-    "defaultMessage": "TODO: No more posts to load"
+    "defaultMessage": "Nema više objava za učitavanje"
+  },
+  "navbar.links.signIn": {
+    "defaultMessage": "Prijavi se"
+  },
+  "posts.list.searchPosts": {
+    "defaultMessage": "Pretraži objave..."
   }
 }

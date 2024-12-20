@@ -92,5 +92,9 @@ export const messages = defineMessages({
   noMorePosts: {
     id: 'posts.list.noMorePosts',
     defaultMessage: 'No more posts to load',
+  },
+  searchPosts: {
+    id: 'posts.list.searchPosts',
+    defaultMessage: 'Search posts...',
   }
 }); 

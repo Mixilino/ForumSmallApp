@@ -71,6 +71,9 @@
   "navbar.links.posts": {
     "defaultMessage": "Posts"
   },
+  "navbar.links.signIn": {
+    "defaultMessage": "Sign In"
+  },
   "navbar.openMainMenu": {
     "defaultMessage": "Open main menu"
   },
@@ -127,6 +130,9 @@
   },
   "posts.list.noPosts": {
     "defaultMessage": "No posts"
+  },
+  "posts.list.searchPosts": {
+    "defaultMessage": "Search posts..."
   },
   "posts.modal.deleteTooltip": {
     "defaultMessage": "Delete"

@@ -18,6 +18,7 @@ export const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Navigate replace to="/auth" />} />
         <Route path="/auth" element={<AuthPage />} />
+        <Route path="/posts" element={<PostsPageV2 />} />
         {authCtx.isAuthenticated && (
           <>
             <Route path="/posts/old" element={<PostsPage />} />
@@ -26,7 +27,6 @@ export const AppRoutes = () => {
             {authCtx.role === UserRoles.Admin && (
               <Route path="/admin/users" element={<ManageUsersPage />} />
             )}
-            <Route path="/posts" element={<PostsPageV2 />} />
           </>
         )}
         <Route path="*" element={<NotFoundPage />} />

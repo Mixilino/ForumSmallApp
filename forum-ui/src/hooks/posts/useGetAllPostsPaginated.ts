@@ -37,10 +37,13 @@ const fetchPaginatedPosts = async (
 export function useGetAllPostsPaginated(cursor: number) {
   const authCtx = useContext(AuthContext);
   const { data, isLoading } = useQuery(
-    [PostsKey, cursor],
+    [PostsKey, 'paginated', cursor],
     () => fetchPaginatedPosts(authCtx.jwtToken!, cursor),
     {
       keepPreviousData: true,
+      staleTime: 30000,
+      cacheTime: 5 * 60 * 1000,
+      refetchOnWindowFocus: false,
     }
   );
 

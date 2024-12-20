@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Localization;
 using ForumWebApi.Filters;
 using Microsoft.Extensions.Localization;
 using ForumWebApi.Resources;
+using ForumWebApi.Data.Seeder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -103,6 +104,8 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
 });
+
+builder.Services.AddScoped<DataSeeder>();
 
 var app = builder.Build();
 
