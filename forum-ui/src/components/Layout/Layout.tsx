@@ -10,7 +10,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <div>
             <NavBar />
-            <div style={{ minHeight: "10rem" }}>
+            <div style={{ minHeight: "calc(100vh - 70px)" }}>
                 {children}</div>
             <Footer />
         </div>

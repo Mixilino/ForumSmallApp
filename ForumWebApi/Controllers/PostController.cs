@@ -59,13 +59,9 @@ namespace ForumWebApi.Controllers
         [AllowAnonymous]
         public ActionResult<ServiceResponse<PostPaginatedResponseDto>> GetAllPaginated([FromQuery] int? cursor = null, [FromQuery] int pageSize = 10)
         {
-            var userName = HttpContext.Items["UserName"];
-            var userId = HttpContext.Items["UserId"];
-            if (userName == null || userId == null)
-            {
-                return BadRequest(new ServiceResponse<PostPaginatedResponseDto> { Data = null, Message = "Invalid data", Succes = false });
-            }
-            UserResponseDto user = new UserResponseDto { UserId = (int)userId, UserName = (string)userName };
+            var userName = HttpContext.Items["UserName"] as string ?? "";
+            var userId = HttpContext.Items["UserId"] as int? ?? -1;
+            UserResponseDto user = new() { UserId = userId, UserName = userName };
             var p = postService.GetAllPaginated(user, cursor, pageSize);
             if (p.Succes)
             {

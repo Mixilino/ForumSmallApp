@@ -13,8 +13,8 @@ export const NotFoundPage = () => {
 
   return (
     <Layout>
-      <div className="flex justify-center flex-col items-center">
-        <h1 className="mb-10 text-4xl text-center mt-10 font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+      <div className="flex justify-center flex-col items-center flex-grow py-20">
+        <h1 className="mb-10 text-4xl text-center font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
           {formatMessage(messages.notFound)}
         </h1>
         <Button

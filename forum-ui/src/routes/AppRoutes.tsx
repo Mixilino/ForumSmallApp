@@ -9,6 +9,7 @@ import { ManageUsersPage } from "../pages/ManageUsers/ManageUsersPage";
 import { EditPostPage } from "../pages/EditPost/EditPostPage";
 import { PostsPage } from "../pages/Posts/PostsPage";
 import Layout from "../components/Layout/Layout";
+import { PostsPageV2 } from "../pages/Posts/PostsPageV2";
 
 export const AppRoutes = () => {
   const authCtx = useContext(AuthContext);
@@ -19,12 +20,13 @@ export const AppRoutes = () => {
         <Route path="/auth" element={<AuthPage />} />
         {authCtx.isAuthenticated && (
           <>
-            <Route path="/posts" element={<PostsPage />} />
+            <Route path="/posts/old" element={<PostsPage />} />
             <Route path="/new" element={<NewPostPage />} />
             <Route path="/edit-post/:postId" element={<EditPostPage />} />
             {authCtx.role === UserRoles.Admin && (
               <Route path="/admin/users" element={<ManageUsersPage />} />
             )}
+            <Route path="/posts" element={<PostsPageV2 />} />
           </>
         )}
         <Route path="*" element={<NotFoundPage />} />

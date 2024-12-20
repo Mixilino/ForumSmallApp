@@ -122,6 +122,9 @@
   "posts.list.filterByCategory": {
     "defaultMessage": "Filter by category"
   },
+  "posts.list.noMorePosts": {
+    "defaultMessage": "No more posts to load"
+  },
   "posts.list.noPosts": {
     "defaultMessage": "No posts"
   },

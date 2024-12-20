@@ -88,5 +88,9 @@ export const messages = defineMessages({
   categoriesRequired: {
     id: 'post.categories.required',
     defaultMessage: 'Please select at least one category'
+  },
+  noMorePosts: {
+    id: 'posts.list.noMorePosts',
+    defaultMessage: 'No more posts to load',
   }
 }); 

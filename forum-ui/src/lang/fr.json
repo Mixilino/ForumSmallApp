@@ -184,5 +184,8 @@
   },
   "footer.language.arabic": {
     "defaultMessage": "Arabe"
+  },
+  "posts.list.noMorePosts": {
+    "defaultMessage": "TODO: No more posts to load"
   }
 }
