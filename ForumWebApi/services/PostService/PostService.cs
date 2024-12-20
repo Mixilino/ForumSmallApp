@@ -23,11 +23,11 @@ namespace ForumWebApi.services.PostService
         public ServiceResponse<List<PostResponseDto>> GetAll(UserResponseDto userDto)
         {
             var user = _unitOfWork.UserRepository.GetById(userDto.UserId);
+            var requestedUserId = user?.UserId;
             var isAdmin = user?.role == UserRoles.Admin;
-
             // Get base query
             var query = _unitOfWork.PostRepository.GetAll()
-                .Where(p => isAdmin || p.ContentFlag == ContentFlagEnum.Normal || p.UserId == userDto.UserId);
+                .Where(p => isAdmin || p.ContentFlag == ContentFlagEnum.Normal || p.UserId == requestedUserId);
 
             var posts = query.OrderBy(p => p.PostId).ToList();
 
@@ -48,9 +48,8 @@ namespace ForumWebApi.services.PostService
                 PostText = post.PostText,
                 PostCategories = post.PostCategories.Select(pc => new PostCategoryReturnDto { PcId = pc.PcId, CategoryName = pc.CategoryName }).ToList(),
                 DatePosted = post.DatePosted,
-                Voted = post.Votes.Any(v => v.User.UserId == userDto.UserId),
-                Upvote = post.Votes.Any(v => v.User.UserId == userDto.UserId) ?
-                    post.Votes.First(v => v.User.UserId == userDto.UserId).UpVote : false,
+                Voted = post.Votes.Any(v => v.User.UserId == requestedUserId),
+                Upvote = post.Votes.Any(v => v.User.UserId == requestedUserId) && post.Votes.First(v => v.User.UserId == requestedUserId).UpVote,
                 VotesCount = post.Votes.Count(v => v.UpVote) - post.Votes.Count(v => !v.UpVote),
                 PostId = post.PostId,
                 ContentFlag = post.ContentFlag
@@ -321,7 +320,7 @@ namespace ForumWebApi.services.PostService
         public ServiceResponse<PostResponseDto> FlagContent(int PostId, bool flag, UserResponseDto userDto)
         {
             var post = _unitOfWork.PostRepository.GetById(PostId);
-            
+
             if (post == null)
             {
                 return new ServiceResponse<PostResponseDto>

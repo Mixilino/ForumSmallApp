@@ -12,8 +12,8 @@ namespace ForumWebApi.Controllers
     /// <summary>
     /// A controller class for managing post categories in an API. Client needs to be Authorized to access any of the methods in this class
     /// </summary>
-    [Authorize]
     [Route("api/post")]
+    [Authorize]
     [ApiController]
     public class PostController : ControllerBase
     {
@@ -35,15 +35,12 @@ namespace ForumWebApi.Controllers
         /// <param name="pageSize">Number of posts to fetch per page. Defaults to 10.</param>
         /// <returns>ServiceResponse containing paginated posts, total count, and next cursor.</returns>
         [HttpGet("all")]
+        [AllowAnonymous]
         public ActionResult<ServiceResponse<List<PostResponseDto>>> GetAll()
         {
-            var userName = HttpContext.Items["UserName"];
-            var userId = HttpContext.Items["UserId"];
-            if (userName == null || userId == null)
-            {
-                return BadRequest(new ServiceResponse<List<PostResponseDto>> { Data = null, Message = "Invalid data", Succes = false });
-            }
-            UserResponseDto user = new UserResponseDto { UserId = (int)userId, UserName = (string)userName };
+            var userName = HttpContext.Items["UserName"] as string ?? "";
+            var userId = HttpContext.Items["UserId"] as int? ?? -1;
+            UserResponseDto user = new() { UserId = userId, UserName = userName };
             var p = postService.GetAll(user);
             if (p.Succes)
             {
@@ -59,6 +56,7 @@ namespace ForumWebApi.Controllers
         /// <param name="pageSize">Number of posts to fetch per page. Defaults to 10.</param>
         /// <returns>ServiceResponse containing paginated posts, total count, and next cursor.</returns>
         [HttpGet("paginated")]
+        [AllowAnonymous]
         public ActionResult<ServiceResponse<PostPaginatedResponseDto>> GetAllPaginated([FromQuery] int? cursor = null, [FromQuery] int pageSize = 10)
         {
             var userName = HttpContext.Items["UserName"];
