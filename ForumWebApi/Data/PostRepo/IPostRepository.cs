@@ -18,5 +18,8 @@ namespace ForumWebApi.Data.PostRepo
         public List<Post> GetAll();
 
         public Post? GetById(int postId);
+
+        IQueryable<Post> GetFilteredPosts(PostFilterDto filter, bool isAdmin, int userId);
+
     }
 }

@@ -23,16 +23,29 @@ const fetchPaginatedPosts = async (
   jwtToken: string,
   { cursor, pageSize = 5, categoryIds, searchText }: FetchParams
 ): Promise<PaginatedPostsResponse> => {
+  const params = new URLSearchParams();
+  
+  // Add basic params
+  params.append('cursor', cursor.toString());
+  params.append('pageSize', pageSize.toString());
+  
+  // Add search text if present
+  if (searchText) {
+    params.append('searchText', searchText);
+  }
+  
+  // Add category IDs correctly
+  if (categoryIds?.length) {
+    categoryIds.forEach(id => {
+      params.append('CategoryIds', id.toString());
+    });
+  }
+
   const config = {
     headers: { 
       Authorization: `Bearer ${jwtToken}`,
     },
-    params: {
-      cursor,
-      pageSize,
-      categoryIds: categoryIds?.length ? categoryIds : undefined,
-      searchText: searchText,
-    },
+    params: params
   };
   
   const { data } = await axiosInstanceTs.get<RestResponse<PaginatedPostsResponse>>(

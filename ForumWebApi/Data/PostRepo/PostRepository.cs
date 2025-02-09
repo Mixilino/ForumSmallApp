@@ -131,5 +131,37 @@ namespace ForumWebApi.Data.PostRepo
                 .Include(p => p.PostCategories)
                 .SingleOrDefault(p => p.PostId == postId);
         }
+
+        public IQueryable<Post> GetFilteredPosts(PostFilterDto filter, bool isAdmin, int userId)
+        {
+            var query = _context.Posts
+                .Include(p => p.User)
+                .Include(p => p.Comments)
+                    .ThenInclude(c => c.User)
+                .Include(p => p.PostCategories)
+                .Include(p => p.Votes)
+                    .ThenInclude(v => v.User)
+                .AsQueryable();
+
+            // Base filtering for content flag
+            query = query.Where(p => isAdmin || p.ContentFlag == ContentFlagEnum.Normal || p.UserId == userId);
+
+            // Apply search filter
+            if (!string.IsNullOrWhiteSpace(filter.SearchText))
+            {
+                var searchText = filter.SearchText.ToLower();
+                query = query.Where(p => 
+                    EF.Functions.Like(p.PostTitle.ToLower(), $"%{searchText}%") || 
+                    EF.Functions.Like(p.PostText.ToLower(), $"%{searchText}%"));
+            }
+
+            // Apply category filter
+            if (filter.CategoryIds != null && filter.CategoryIds.Any())
+            {
+                query = query.Where(p => p.PostCategories.Any(pc => filter.CategoryIds.Contains(pc.PcId)));
+            }
+
+            return query;
+        }
     }
 }

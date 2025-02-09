@@ -383,25 +383,8 @@ namespace ForumWebApi.services.PostService
             var user = _unitOfWork.UserRepository.GetById(userDto.UserId);
             var isAdmin = user?.role == UserRoles.Admin;
 
-            // Get base query
-            var query = _unitOfWork.PostRepository.GetAll()
-                .Where(p => isAdmin || p.ContentFlag == ContentFlagEnum.Normal || p.UserId == userDto.UserId);
-
-            // Apply search filter
-            if (!string.IsNullOrWhiteSpace(filter.SearchText))
-            {
-                var searchText = filter.SearchText.ToLower();
-                query = query.Where(p => 
-                    p.PostTitle.ToLower().Contains(searchText) || 
-                    p.PostText.ToLower().Contains(searchText));
-            }
-
-            // Apply category filter
-            if (filter.CategoryIds != null && filter.CategoryIds.Any())
-            {
-                query = query.Where(p => p.PostCategories
-                    .Any(pc => filter.CategoryIds.Contains(pc.PcId)));
-            }
+            // Get filtered query from repository
+            var query = _unitOfWork.PostRepository.GetFilteredPosts(filter, isAdmin, userDto.UserId);
 
             // Get total count
             var totalPosts = query.Count();
@@ -443,10 +426,9 @@ namespace ForumWebApi.services.PostService
                 PostText = post.PostText,
                 PostCategories = post.PostCategories.Select(pc => new PostCategoryReturnDto { PcId = pc.PcId, CategoryName = pc.CategoryName }).ToList(),
                 DatePosted = post.DatePosted,
-                Voted = post.Votes.Any(v => v.User.UserId == userDto.UserId),
-                Upvote = post.Votes.Any(v => v.User.UserId == userDto.UserId) ?
-                    post.Votes.First(v => v.User.UserId == userDto.UserId).UpVote : false,
-                VotesCount = post.Votes.Count(v => v.UpVote) - post.Votes.Count(v => !v.UpVote),
+                Voted = post.Votes?.Any(v => v.User?.UserId == userDto.UserId) ?? false,
+                Upvote = post.Votes?.FirstOrDefault(v => v.User?.UserId == userDto.UserId)?.UpVote ?? false,
+                VotesCount = post.Votes?.Sum(v => v.UpVote ? 1 : -1) ?? 0,
                 PostId = post.PostId,
                 ContentFlag = post.ContentFlag
             }).ToList();
