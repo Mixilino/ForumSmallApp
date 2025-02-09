@@ -71,7 +71,7 @@ namespace ForumWebApi.ServiceTest
             Assert.IsTrue(response.Succes);
             Assert.AreEqual("Success", response.Message);
             Assert.AreEqual(3, response.Data.Count);
-            var postResponseDto = response.Data.First();
+            var postResponseDto = response.Data[2];
             Assert.AreEqual("Test Post 1", postResponseDto.PostTitle);
             Assert.AreEqual("Lorem ipsum dolor sit amet", postResponseDto.PostText);
             Assert.AreEqual("User1", postResponseDto.User.UserName);

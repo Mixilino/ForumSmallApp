@@ -83,7 +83,8 @@ namespace ForumWebApi.ServiceTest
             };
             var mockRepo = new Mock<IUnitOfWork>();
             mockRepo = new Mock<IUnitOfWork>();
-            mockRepo.Setup(repo => repo.PostCategoryRepository.GetAll()).Returns(actualCategoryList);
+            mockRepo.Setup(repo => repo.PostCategoryRepository.GetAll())
+                   .Returns(Task.FromResult(actualCategoryList));
             PostCategoryService cs = new PostCategoryService(mockRepo.Object);
             ServiceResponse<List<PostCategoryReturnDto>> expectedResponse = new ServiceResponse<List<PostCategoryReturnDto>>()
             {
@@ -92,7 +93,7 @@ namespace ForumWebApi.ServiceTest
                 Message = "Success",
             };
             // Act
-            var result = cs.GetAll();
+            var result = cs.GetAll().Result;
 
             // Assert
             Assert.AreEqual(expectedResponse.Succes, result.Succes);
@@ -214,7 +215,7 @@ namespace ForumWebApi.ServiceTest
             var actualChangedCategory = new PostCategory() { PcId = 1, CategoryName = requestPostCategory.CategoryName };
             var mockRepo = new Mock<IUnitOfWork>();
             mockRepo = new Mock<IUnitOfWork>();
-            mockRepo.Setup(repo => repo.PostCategoryRepository.Rename(requestPostCategory)).Returns((PostCategory)null);
+            _ = mockRepo.Setup(repo => repo.PostCategoryRepository.Rename(requestPostCategory)).Returns((PostCategory)null);
             mockRepo.Setup(repo => repo.Save()).Returns(0);
             PostCategoryService cs = new PostCategoryService(mockRepo.Object);
             ServiceResponse<PostCategoryReturnDto> expectedResponse = new ServiceResponse<PostCategoryReturnDto>()

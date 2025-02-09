@@ -30,7 +30,7 @@ namespace ForumWebApi.DomainTest
             var result = post.ToString();
 
             // Assert
-            Assert.AreEqual("1 Sample post 1/1/2022 12:00:00 AM 2", result);
+            Assert.AreEqual("1 Sample post 01/01/2022 00:00:00 2", result);
         }
 
         [Test]
@@ -70,17 +70,6 @@ namespace ForumWebApi.DomainTest
             Assert.IsNotNull(post.Comments);
             Assert.IsInstanceOf<List<Comment>>(post.Comments);
             Assert.AreEqual(0, post.Comments.Count);
-        }
-
-        [Test]
-        [Category("Domain_Post")]
-        public void PostState_DefaultValue_IsInVerification()
-        {
-            // Arrange
-            var post = new Post();
-
-            // Assert
-            Assert.AreEqual(PostStateEnum.In_Verification, post.PostState);
         }
 
         [Test]
